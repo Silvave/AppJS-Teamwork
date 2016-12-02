@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
-import {delete} from '../../models/team';
+import {loadDetails, del} from '../../models/team';
 //import observer from '../../models/observer';
 
-
 export default class DeletePage extends Component {
-    constructor(props){
+    constructor(props) {
         //Get props from the parent
         super(props);
         //Set default state
@@ -17,18 +16,32 @@ export default class DeletePage extends Component {
         //Bind functions with parent class
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.onCreateSuccess = this.onCreateSuccess.bind(this);
+        this.onDeleteSuccess = this.onDeleteSuccess.bind(this);
+        this.onLoadSuccess = this.onLoadSuccess.bind(this);
     }
+
+    componentDidMount() {
+        loadDetails(this.props.params.teamId, this.onLoadSuccess);
+    }
+
+    onLoadSuccess(response) {
+        this.setState({
+            name: response.name,
+            description: response.description,
+            inputDisabled: false
+        });
+    }
+
     //Change state of this.props, binding them with the input fields.value with onChange handler
     onChangeHandler(ev) {
         ev.preventDefault();
         let newState = {};
         newState[ev.target.name] = ev.target.value;
-        if(ev.target.name === "name"){
-            if(ev.target.value.length < 4){
+        if (ev.target.name === "name") {
+            if (ev.target.value.length < 4) {
                 newState.inputDisabled = true;
             }
-            else{
+            else {
                 newState.inputDisabled = false;
             }
         }
@@ -39,17 +52,20 @@ export default class DeletePage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-
-        del(this.state.name,
-            this.state.description,
-            this.onCreateSuccess);
-
+        if(this.state.name.length < 4){
+            alert('Team name must be at least 3 chars long')
+        }
+        else{
+            del(this.props.params.teamId,this.onDeleteSuccess)
+        }
     }
+
     //the callback for the promise
-    onCreateSuccess(result){
+    onDeleteSuccess(result) {
         alert('success');
         this.context.router.push('/catalog');
     }
+
     render() {
         return (
             <div>

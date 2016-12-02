@@ -15,6 +15,7 @@ export default  class DeleteForm extends Component {
                         name="name"
                         value={this.props.name}
                         onChange={this.props.onChange}
+                        disabled
                     />
                 </div>
                 <div className="form-group">
@@ -28,6 +29,7 @@ export default  class DeleteForm extends Component {
                         name="description"
                         value={this.props.description}
                         onChange={this.props.onChange}
+                        disabled
                     />
                 </div>
                 <input
