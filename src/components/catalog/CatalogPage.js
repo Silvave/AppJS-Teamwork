@@ -23,7 +23,7 @@ export default class CatalogPage extends Component {
             <div>
                 <h1>Catalog Page</h1>
                 {this.state.teams.map((el,i) =>{
-                    return <Team key={i} name={el.name} description={el.description} teamId={el._id}/>
+                    return <Team key={i} name={el.name} description={el.description} teamId={el._id} creator={el._acl.creator}/>
                 })}
             </div>
         )
