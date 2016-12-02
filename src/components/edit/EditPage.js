@@ -3,7 +3,6 @@ import EditForm from '../create/CreateForm';
 import {loadDetails, edit} from '../../models/team';
 //import observer from '../../models/observer';
 
-
 export default class EditPage extends Component {
     constructor(props) {
         //Get props from the parent

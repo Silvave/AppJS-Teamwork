@@ -13,6 +13,7 @@ export default class Team extends Component {
                     <p>{this.props.description || "Description is empty"}</p>
                     <span className="spanner">Management</span>
                     <Link to={"/edit/" + this.props.teamId} className="btn btn-default">Edit</Link>
+                    <Link to={"/delete/" + this.props.teamId} className="btn btn-default">Delete</Link>
                 </div>
             )
         }

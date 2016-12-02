@@ -28,9 +28,15 @@ function edit(teamId, name, description, callback) {
         .then(() => callback(true))
         .catch(() => callback(false))
 }
+function del(teamId,teamData, callback) {
+    requester.del('appdata', 'teams/' + teamId, 'kinvey', teamData)
+        .then(() => callback(true))
+        .catch(() => callback(false))
+}
 export {
     create,
     loadTeams,
     loadDetails,
-    edit
+    edit,
+    del
 }

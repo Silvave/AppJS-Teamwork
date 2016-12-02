@@ -24,6 +24,7 @@ ReactDOM.render(
             <Route path="login" component={Login}/>
             <Route path="create" component={Create}/>
             <Route path="edit/:teamId" component={Edit}/>
+            <Route path="delete/:teamId" component={Edit}/>
         </Route>
     </Router>,
     document.getElementById('root')

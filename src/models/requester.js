@@ -60,8 +60,20 @@ function update(module, url, auth, data) {
     return $.ajax(request);
 }
 
+function del(module, url, auth) {
+    let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
+    let header = getHeader(auth);
+
+    return $.ajax({
+        method: 'DELETE',
+        url: hostUrl,
+        headers: header
+    });
+}
+
 export {
     get,
     post,
-    update
+    update,
+    del
 };
