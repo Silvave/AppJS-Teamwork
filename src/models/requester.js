@@ -6,7 +6,7 @@ const appKey = 'kid_B1a7PGeQg';
 const appSecret = '778cc223897349649d77214daa914bd5';
 
 function getHeader(auth) {
-    let header = {"Authorization": ""};
+    let header = {};
     switch (auth) {
         case "basic":
             header["Authorization"] = "Basic " + btoa(appKey + ':' + appSecret);
@@ -19,39 +19,12 @@ function getHeader(auth) {
     return header;
 }
 
-function get(module, url, auth) {
-    let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
-    let header = getHeader(auth);
-
-    return $.ajax({
-        method: 'GET',
-        url: hostUrl,
-        headers: header
-    });
-}
-
-function post(module, url, auth, data) {
+export function fetch(method, module, url, auth, data) {
     let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
     let header = getHeader(auth);
 
     let request = {
-        method: 'POST',
-        url: hostUrl,
-        headers: header
-    };
-    if (data) {
-        request.data = data;
-    }
-
-    return $.ajax(request);
-}
-
-function update(module, url, auth, data) {
-    let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
-    let header = getHeader(auth);
-
-    let request = {
-        method: 'PUT',
+        method: method,
         url: hostUrl,
         headers: header,
         data: data
@@ -59,21 +32,3 @@ function update(module, url, auth, data) {
 
     return $.ajax(request);
 }
-
-function del(module, url, auth) {
-    let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
-    let header = getHeader(auth);
-
-    return $.ajax({
-        method: 'DELETE',
-        url: hostUrl,
-        headers: header
-    });
-}
-
-export {
-    get,
-    post,
-    update,
-    del
-};

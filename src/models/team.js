@@ -6,17 +6,18 @@ function create(name, description, callback) {
         name: name,
         description: description
     };
-    requester.post('appdata', 'teams', 'kinvey', teamData)
+    requester.fetch('POST', 'appdata', 'teams', 'kinvey', teamData)
         .then(() => callback(true))
         .catch(() => callback(false))
 }
 
 function loadTeams(callback) {
-    requester.get('appdata', 'teams', 'kinvey')
+    requester.fetch('GET', 'appdata', 'teams', 'kinvey')
         .then(callback);
 }
+
 function loadDetails(teamId, callback) {
-    requester.get('appdata', 'teams/' + teamId, 'kinvey')
+    requester.fetch('GET', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(callback);
 }
 function edit(teamId, name, description, callback) {
@@ -24,13 +25,13 @@ function edit(teamId, name, description, callback) {
         name: name,
         description: description
     };
-    requester.update('appdata', 'teams/' + teamId, 'kinvey', teamData)
+    requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
         .then(() => callback(true))
         .catch(() => callback(false))
 }
 function del(teamId,callback) {
     alert('delete - model');
-    requester.del('appdata', 'teams/' + teamId, 'kinvey')
+    requester.fetch('DELETE', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(() => callback(true))
         .catch(() => callback(false))
 }

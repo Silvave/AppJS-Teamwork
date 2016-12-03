@@ -1,5 +1,6 @@
 import * as requester from './requester';
 
+
 //Save session
 function saveUserAuth(userObj) {
     sessionStorage.setItem('authToken', `${userObj._kmd.authtoken}`);
@@ -12,7 +13,7 @@ function login(username, password, callback) {
         username: username,
         password: password
     };
-    requester.post('user', 'login', 'basic', userData)
+    requester.fetch('POST', 'user', 'login', 'basic', userData)
         .then((response) => {
             saveUserAuth(response);
             callback(true);
@@ -25,16 +26,15 @@ function register(username, password, callback) {
         username: username,
         password: password
     };
-    requester.post('user', '', 'basic', userData)
+    requester.fetch('POST', 'user', '', 'basic', userData)
         .then((response) => {
             saveUserAuth(response);
             callback(true);
         })
 }
 
-//logout
 function logout(callback) {
-    requester.post('user', '_logout', 'kinvey', null)
+    requester.fetch('POST', 'user', '_logout', 'kinvey', null)
         .then((response) =>{
             sessionStorage.clear();
             callback(true);
