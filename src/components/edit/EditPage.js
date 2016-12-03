@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import EditForm from './EditForm';
-import {loadDetails, editTeam} from '../../models/team';
+import {loadDetails, editTeam, loadTeams} from '../../models/team';
 //import observer from '../../models/observer';
 
 export default class EditPage extends Component {
@@ -20,6 +20,8 @@ export default class EditPage extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onEditSuccess = this.onEditSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
+        this.redirectToCatalog = this.redirectToCatalog.bind(this);
+        this.loadTeams = this.loadTeams.bind(this);
     }
 
     componentDidMount() {
@@ -74,6 +76,14 @@ export default class EditPage extends Component {
         //alert('success');
         this.context.router.push('/catalog');
     }
+    //Redirect without ajax call on cancel Form
+    redirectToCatalog(ev){
+        ev.preventDefault();//prevent form submittion(delete team)
+        loadTeams(this.loadTeams);
+    }
+    loadTeams(){
+        this.context.router.push('/catalog');
+    }
 
     render() {
         return (
@@ -87,6 +97,7 @@ export default class EditPage extends Component {
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
+                    redirect={this.redirectToCatalog}
                 />
             </div>
         )

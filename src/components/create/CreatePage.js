@@ -51,7 +51,6 @@ export default class CreatePage extends Component {
     }
     //the callback for the promise
     onCreateSuccess(result){
-        alert('success');
         this.context.router.push('/catalog');
     }
     render() {

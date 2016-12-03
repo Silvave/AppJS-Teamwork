@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
-import {loadDetails, deleteTeam} from '../../models/team';
+import {loadDetails, deleteTeam, loadTeams} from '../../models/team';
 //import observer from '../../models/observer';
 
 export default class DeletePage extends Component {
@@ -11,6 +11,8 @@ export default class DeletePage extends Component {
         this.state = {
             name: '',
             description: '',
+            beginning: '',
+            deadline: '',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -18,6 +20,9 @@ export default class DeletePage extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onDeleteSuccess = this.onDeleteSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
+        this.redirectToCatalog = this.redirectToCatalog.bind(this);
+
+        this.loadTeams = this.loadTeams.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +33,8 @@ export default class DeletePage extends Component {
         this.setState({
             name: response.name,
             description: response.description,
+            beginning: response.beginning,
+            deadline: response.deadline,
             inputDisabled: false
         });
     }
@@ -62,7 +69,14 @@ export default class DeletePage extends Component {
 
     //the callback for the promise
     onDeleteSuccess(result) {
-        alert('success');
+        this.context.router.push('/catalog');
+    }
+    //Redirect without ajax call on Cancel form
+    redirectToCatalog(ev){
+        ev.preventDefault();//prevent form submittion(delete team)
+        loadTeams(this.loadTeams);
+    }
+    loadTeams(){
         this.context.router.push('/catalog');
     }
 
@@ -73,9 +87,12 @@ export default class DeletePage extends Component {
                 <DeleteForm
                     name={this.state.name}
                     description={this.state.description}
+                    beginning={this.state.beginning}
+                    deadline={this.state.deadline}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
+                    redirect={this.redirectToCatalog}
                 />
             </div>
         )

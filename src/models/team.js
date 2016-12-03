@@ -1,6 +1,5 @@
 import * as requester from './requester';
 
-
 function createTeam(name, description, startDate, endDate, callback) {
     let teamData = {
         name: name,
@@ -34,7 +33,6 @@ function editTeam(teamId, name, description, beginning, deadline, callback) {
         .catch(() => callback(false))
 }
 function deleteTeam(teamId, callback) {
-    alert('delete - model');
     requester.fetch('DELETE', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(() => callback(true))
         .catch(() => callback(false))

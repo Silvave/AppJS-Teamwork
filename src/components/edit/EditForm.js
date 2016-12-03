@@ -61,6 +61,11 @@ export default  class EditForm extends Component {
                     value="Edit Team"
                     className="btn btn-default"
                     disabled={this.props.inputDisabled}/>
+                <input
+                    type="submit"
+                    value="Cancel"
+                    className="btn btn-default"
+                    onClick={this.props.redirect}/>
             </form>
         )
     }

@@ -32,11 +32,42 @@ export default  class DeleteForm extends Component {
                         disabled
                     />
                 </div>
+                <div className="form-group">
+                    <label>
+                        Beginning
+                    </label>
+                    <input
+                        //the submition of this form will send data to the handler with these props
+                        className="form-control"
+                        type="date"
+                        name="beginning"
+                        value={this.props.beginning}
+                        onChange={this.props.onChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>
+                        Deadline
+                    </label>
+                    <input
+                        //the submition of this form will send data to the handler with these props
+                        className="form-control"
+                        type="date"
+                        name="deadline"
+                        value={this.props.deadline}
+                        onChange={this.props.onChange}
+                    />
+                </div>
                 <input
                     type="submit"
                     value="Delete Team"
                     className="btn btn-default"
                     disabled={this.props.inputDisabled}/>
+                <input
+                    type="submit"
+                    value="Cancel"
+                    className="btn btn-default"
+                    onClick={this.props.redirect}/>
             </form>
         )
     }
