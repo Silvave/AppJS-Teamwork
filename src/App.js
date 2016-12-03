@@ -55,6 +55,7 @@ export default class App extends Component {
                         <Link to='/' className="btn btn-default">Home</Link>
                         <Link to='/about' className="btn btn-default">About</Link>
                         <Link to='/catalog' className="btn btn-default">Catalog</Link>
+                        <Link to='/create' className="btn btn-default">Create</Link>
                         <Link to='' className="btn btn-default" onClick={() => logout(this.onLogout)}>Logout</Link>
                     </Header>
                     {this.props.children}
