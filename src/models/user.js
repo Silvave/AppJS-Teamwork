@@ -35,7 +35,7 @@ function register(username, password, callback) {
 
 function logout(callback) {
     requester.fetch('POST', 'user', '_logout', 'kinvey', null)
-        .then((response) =>{
+        .then((response) => {
             sessionStorage.clear();
             callback(true);
         })
@@ -43,9 +43,15 @@ function logout(callback) {
 
 }
 
+function loadUsers(callback) {
+    requester.fetch('GET', 'appdata', 'users', 'kinvey')
+        .then(callback);
+}
+
 
 export {
     login,
     register,
-    logout
+    logout,
+    loadUsers
 }

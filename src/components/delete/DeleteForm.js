@@ -43,6 +43,7 @@ export default  class DeleteForm extends Component {
                         name="beginning"
                         value={this.props.beginning}
                         onChange={this.props.onChange}
+                        disabled
                     />
                 </div>
                 <div className="form-group">
@@ -56,13 +57,14 @@ export default  class DeleteForm extends Component {
                         name="deadline"
                         value={this.props.deadline}
                         onChange={this.props.onChange}
+                        disabled
                     />
                 </div>
                 <input
                     type="submit"
                     value="Delete Team"
                     className="btn btn-default"
-                    disabled={this.props.inputDisabled}/>
+                    />
                 <input
                     type="submit"
                     value="Cancel"

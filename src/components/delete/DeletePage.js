@@ -12,8 +12,7 @@ export default class DeletePage extends Component {
             name: '',
             description: '',
             beginning: '',
-            deadline: '',
-            inputDisabled: true
+            deadline: ''
         };
         //Bind functions with parent class
         this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -44,14 +43,6 @@ export default class DeletePage extends Component {
         ev.preventDefault();
         let newState = {};
         newState[ev.target.name] = ev.target.value;
-        if (ev.target.name === "name") {
-            if (ev.target.value.length < 4) {
-                newState.inputDisabled = true;
-            }
-            else {
-                newState.inputDisabled = false;
-            }
-        }
         this.setState(newState);
     }
 
