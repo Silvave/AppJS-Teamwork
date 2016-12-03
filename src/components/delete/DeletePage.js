@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
-import {loadDetails, del} from '../../models/team';
+import {loadDetails, deleteTeam} from '../../models/team';
 //import observer from '../../models/observer';
 
 export default class DeletePage extends Component {
@@ -56,7 +56,7 @@ export default class DeletePage extends Component {
             alert('Team name must be at least 3 chars long')
         }
         else{
-            del(this.props.params.teamId,this.onDeleteSuccess)
+            deleteTeam(this.props.params.teamId,this.onDeleteSuccess)
         }
     }
 

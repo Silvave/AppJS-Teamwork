@@ -1,7 +1,7 @@
 import * as requester from './requester';
 
 
-function create(name, description, callback) {
+function createTeam(name, description, callback) {
     let teamData = {
         name: name,
         description: description
@@ -20,7 +20,7 @@ function loadDetails(teamId, callback) {
     requester.fetch('GET', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(callback);
 }
-function edit(teamId, name, description, callback) {
+function editTeam(teamId, name, description, callback) {
     let teamData = {
         name: name,
         description: description
@@ -29,16 +29,17 @@ function edit(teamId, name, description, callback) {
         .then(() => callback(true))
         .catch(() => callback(false))
 }
-function del(teamId,callback) {
+function deleteTeam(teamId, callback) {
     alert('delete - model');
     requester.fetch('DELETE', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(() => callback(true))
         .catch(() => callback(false))
 }
+
 export {
-    create,
+    createTeam,
     loadTeams,
     loadDetails,
-    edit,
-    del
+    editTeam,
+    deleteTeam
 }

@@ -1,32 +1,32 @@
-//This function main work is to make response with the DB
+//This function main work is to communicate with the Kinvey DB
 import $ from 'jquery';
 
 const kinveyUrl = 'https://baas.kinvey.com/';
 const appKey = 'kid_B1a7PGeQg';
 const appSecret = '778cc223897349649d77214daa914bd5';
 
-function getHeader(auth) {
-    let header = {};
+function getHeaders(auth) {
+    let headers = {};
     switch (auth) {
         case "basic":
-            header["Authorization"] = "Basic " + btoa(appKey + ':' + appSecret);
+            headers["Authorization"] = "Basic " + btoa(appKey + ':' + appSecret);
             break;
         case "kinvey":
-            header["Authorization"] = "Kinvey " + sessionStorage.getItem('authToken');
+            headers["Authorization"] = "Kinvey " + sessionStorage.getItem('authToken');
             break;
         default:
     }
-    return header;
+    return headers;
 }
 
 export function fetch(method, module, url, auth, data) {
     let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
-    let header = getHeader(auth);
+    let headers = getHeaders(auth);
 
     let request = {
         method: method,
         url: hostUrl,
-        headers: header,
+        headers: headers,
         data: data
     };
 

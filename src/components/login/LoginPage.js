@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import LoginForm from './LoginForm';
 import {login} from '../../models/user';
 import observer from '../../models/observer';
@@ -51,9 +51,6 @@ export default class LoginPage extends Component {
             //redirect user to 'Home' when login is success
             this.context.router.push('/');
         }
-
-
-
     }
 
     render() {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CreateForm from './CreateForm';
-import {create} from '../../models/team';
+import {createTeam} from '../../models/team';
 //import observer from '../../models/observer';
 
 
@@ -40,7 +40,7 @@ export default class CreatePage extends Component {
         //Prevent refreshing the page
         ev.preventDefault();
 
-        create(this.state.name, 
+        createTeam(this.state.name,
             this.state.description, 
             this.onCreateSuccess);
 

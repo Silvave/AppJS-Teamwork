@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import EditForm from '../create/CreateForm';
-import {loadDetails, edit} from '../../models/team';
+import {loadDetails, editTeam} from '../../models/team';
 //import observer from '../../models/observer';
 
 export default class EditPage extends Component {
@@ -56,7 +56,7 @@ export default class EditPage extends Component {
             alert('Team name must be at least 3 chars long')
         }
         else{
-            edit(this.props.params.teamId, this.state.name,this.state.description,this.onEditSuccess)
+            editTeam(this.props.params.teamId, this.state.name,this.state.description,this.onEditSuccess)
         }
     }
 
