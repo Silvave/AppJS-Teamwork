@@ -11,6 +11,10 @@ export default class Team extends Component {
                     <span className="spanner">{this.props.name}</span>
                     <span className="spanner">Description</span>
                     <p>{this.props.description || "Description is empty"}</p>
+                    <span className="spanner">Beginning</span>
+                    <p>{this.props.beginning}</p>
+                    <span className="spanner">Deadline</span>
+                    <p>{this.props.deadline}</p>
                     <span className="spanner">Management</span>
                     <Link to={"/edit/" + this.props.teamId} className="btn btn-default">Edit</Link>
                     <Link to={"/delete/" + this.props.teamId} className="btn btn-default">Delete</Link>
@@ -24,7 +28,10 @@ export default class Team extends Component {
                     <span className="spanner">{this.props.name}</span>
                     <span className="spanner">Description</span>
                     <p>{this.props.description || "Description is empty"}</p>
-                    <span className="spanner">Management</span>
+                    <span className="spanner">Beginning</span>
+                    <p>{this.props.startDate}</p>
+                    <span className="spanner">Deadline</span>
+                    <p>{this.props.endDate}</p>
                 </div>
             )
         }

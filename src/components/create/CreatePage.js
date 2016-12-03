@@ -12,6 +12,8 @@ export default class CreatePage extends Component {
         this.state = {
             name: '',
             description: '',
+            startDate: '',
+            endDate: '',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -41,7 +43,9 @@ export default class CreatePage extends Component {
         ev.preventDefault();
 
         createTeam(this.state.name,
-            this.state.description, 
+            this.state.description,
+            this.state.startDate,
+            this.state.endDate,
             this.onCreateSuccess);
 
     }
@@ -57,6 +61,8 @@ export default class CreatePage extends Component {
                 <CreateForm
                 username={this.state.name}
                 password={this.state.description}
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
                 onChange={this.onChangeHandler}
                 onSubmit={this.onSubmitHandler}
                 inputDisabled={this.state.inputDisabled}

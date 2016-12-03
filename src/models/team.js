@@ -1,10 +1,12 @@
 import * as requester from './requester';
 
 
-function createTeam(name, description, callback) {
+function createTeam(name, description, startDate, endDate, callback) {
     let teamData = {
         name: name,
-        description: description
+        description: description,
+        beginning: startDate,
+        deadline: endDate
     };
     requester.fetch('POST', 'appdata', 'teams', 'kinvey', teamData)
         .then(() => callback(true))
