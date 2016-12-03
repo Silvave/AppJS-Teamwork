@@ -2,8 +2,8 @@
 import $ from 'jquery';
 
 const kinveyUrl = 'https://baas.kinvey.com/';
-const appKey = 'kid_HJYL52Tfl';
-const appSecret = '21f05a36964841a69ff556438ac4d2df';
+const appKey = 'kid_B1a7PGeQg';
+const appSecret = '778cc223897349649d77214daa914bd5';
 
 function getHeader(auth) {
     let header = {"Authorization": ""};
