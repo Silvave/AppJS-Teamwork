@@ -23,6 +23,7 @@ export default class CatalogPage extends Component {
             <div>
                 <h1>Catalog Page</h1>
                 {this.state.teams.map((el,i) =>{
+                    //console.log(el);
                     return <Team key={i}
                                  name={el.name}
                                  description={el.description}

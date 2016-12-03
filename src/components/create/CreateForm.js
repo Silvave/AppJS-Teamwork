@@ -38,8 +38,8 @@ export default  class CreateForm extends Component {
                         //the submition of this form will send data to the handler with these props
                         className="form-control"
                         type="date"
-                        name="startDate"
-                        value={this.props.startDate}
+                        name="beginning"
+                        value={this.props.beginning}
                         onChange={this.props.onChange}
                         required
                     />
@@ -52,8 +52,8 @@ export default  class CreateForm extends Component {
                         //the submition of this form will send data to the handler with these props
                         className="form-control"
                         type="date"
-                        name="endDate"
-                        value={this.props.endDate}
+                        name="deadline"
+                        value={this.props.deadline}
                         onChange={this.props.onChange}
                         required
                     />

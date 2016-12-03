@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import EditForm from '../create/CreateForm';
+import EditForm from './EditForm';
 import {loadDetails, editTeam} from '../../models/team';
 //import observer from '../../models/observer';
 
@@ -11,6 +11,8 @@ export default class EditPage extends Component {
         this.state = {
             name: '',
             description: '',
+            beginning: '',
+            deadline: '',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -28,6 +30,8 @@ export default class EditPage extends Component {
         this.setState({
             name: response.name,
             description: response.description,
+            beginning: response.beginning,
+            deadline: response.deadline,
             inputDisabled: false
         });
     }
@@ -52,11 +56,16 @@ export default class EditPage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        if(this.state.name.length < 4){
+        if (this.state.name.length < 4) {
             alert('Team name must be at least 3 chars long')
         }
-        else{
-            editTeam(this.props.params.teamId, this.state.name,this.state.description,this.onEditSuccess)
+        else {
+            editTeam(this.props.params.teamId,
+                this.state.name,
+                this.state.description,
+                this.state.beginning,
+                this.state.deadline,
+                this.onEditSuccess)
         }
     }
 
@@ -73,6 +82,8 @@ export default class EditPage extends Component {
                 <EditForm
                     name={this.state.name}
                     description={this.state.description}
+                    beginning={this.state.beginning}
+                    deadline={this.state.deadline}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}

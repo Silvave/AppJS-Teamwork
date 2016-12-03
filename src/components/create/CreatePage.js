@@ -12,8 +12,8 @@ export default class CreatePage extends Component {
         this.state = {
             name: '',
             description: '',
-            startDate: '',
-            endDate: '',
+            beginning: '',
+            deadline: '',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -44,8 +44,8 @@ export default class CreatePage extends Component {
 
         createTeam(this.state.name,
             this.state.description,
-            this.state.startDate,
-            this.state.endDate,
+            this.state.beginning,
+            this.state.deadline,
             this.onCreateSuccess);
 
     }
@@ -59,8 +59,8 @@ export default class CreatePage extends Component {
             <div>
                 <h1>Create Team Page</h1>
                 <CreateForm
-                username={this.state.name}
-                password={this.state.description}
+                name={this.state.name}
+                description={this.state.description}
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
                 onChange={this.onChangeHandler}

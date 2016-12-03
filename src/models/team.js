@@ -22,10 +22,12 @@ function loadDetails(teamId, callback) {
     requester.fetch('GET', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(callback);
 }
-function editTeam(teamId, name, description, callback) {
+function editTeam(teamId, name, description, beginning, deadline, callback) {
     let teamData = {
         name: name,
-        description: description
+        description: description,
+        beginning: beginning,
+        deadline: deadline
     };
     requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
         .then(() => callback(true))
