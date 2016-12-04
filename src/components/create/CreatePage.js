@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CreateForm from './CreateForm';
-import {createTeam} from '../../models/team';
+import {create} from '../../models/team';
+import {addUserToTeam} from '../../models/user'
 //import observer from '../../models/observer';
 
 
@@ -12,8 +13,8 @@ export default class CreatePage extends Component {
         this.state = {
             name: '',
             description: '',
-            beginning: '',
-            deadline: '',
+            start:'',
+            deadline:'',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -42,15 +43,16 @@ export default class CreatePage extends Component {
         //Prevent refreshing the page
         ev.preventDefault();
 
-        createTeam(this.state.name,
+        create(this.state.name,
             this.state.description,
-            this.state.beginning,
+            this.state.start,
             this.state.deadline,
             this.onCreateSuccess);
 
     }
     //the callback for the promise
     onCreateSuccess(result){
+        alert('success');
         this.context.router.push('/catalog');
     }
     render() {
@@ -58,10 +60,10 @@ export default class CreatePage extends Component {
             <div>
                 <h1>Create Team Page</h1>
                 <CreateForm
-                name={this.state.name}
-                description={this.state.description}
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
+                username={this.state.name}
+                password={this.state.description}
+                start={this.state.start}
+                deadline={this.state.deadline}
                 onChange={this.onChangeHandler}
                 onSubmit={this.onSubmitHandler}
                 inputDisabled={this.state.inputDisabled}

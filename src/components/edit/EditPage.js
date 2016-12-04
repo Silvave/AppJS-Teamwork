@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import EditForm from './EditForm';
-import {loadDetails, editTeam, loadTeams} from '../../models/team';
+import EditForm from '../create/CreateForm';
+import {loadDetails, edit} from '../../models/team';
 //import observer from '../../models/observer';
+
 
 export default class EditPage extends Component {
     constructor(props) {
@@ -11,8 +12,6 @@ export default class EditPage extends Component {
         this.state = {
             name: '',
             description: '',
-            beginning: '',
-            deadline: '',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -20,8 +19,6 @@ export default class EditPage extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onEditSuccess = this.onEditSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
-        this.redirectToCatalog = this.redirectToCatalog.bind(this);
-        this.loadTeams = this.loadTeams.bind(this);
     }
 
     componentDidMount() {
@@ -32,8 +29,6 @@ export default class EditPage extends Component {
         this.setState({
             name: response.name,
             description: response.description,
-            beginning: response.beginning,
-            deadline: response.deadline,
             inputDisabled: false
         });
     }
@@ -58,30 +53,17 @@ export default class EditPage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        if (this.state.name.length < 4) {
+        if(this.state.name.length < 4){
             alert('Team name must be at least 3 chars long')
         }
-        else {
-            editTeam(this.props.params.teamId,
-                this.state.name,
-                this.state.description,
-                this.state.beginning,
-                this.state.deadline,
-                this.onEditSuccess)
+        else{
+            edit(this.props.params.teamId, this.state.name,this.state.description,this.onEditSuccess)
         }
     }
 
     //the callback for the promise
     onEditSuccess(result) {
         //alert('success');
-        this.context.router.push('/catalog');
-    }
-    //Redirect without ajax call on cancel Form
-    redirectToCatalog(ev){
-        ev.preventDefault();//prevent form submittion(delete team)
-        loadTeams(this.loadTeams);
-    }
-    loadTeams(){
         this.context.router.push('/catalog');
     }
 
@@ -92,12 +74,9 @@ export default class EditPage extends Component {
                 <EditForm
                     name={this.state.name}
                     description={this.state.description}
-                    beginning={this.state.beginning}
-                    deadline={this.state.deadline}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
-                    redirect={this.redirectToCatalog}
                 />
             </div>
         )
