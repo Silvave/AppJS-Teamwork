@@ -16,7 +16,6 @@ export default class CatalogPage extends Component {
         loadTeams(this.onLoadSuccess);
     }
     onLoadSuccess(response){
-        console.log(response)
         this.setState({teams: response});
     }
 

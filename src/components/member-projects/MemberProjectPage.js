@@ -16,7 +16,6 @@ export default class MemberProjectsPage extends Component {
         loadMemberTeams(this.onLoadSuccess);
     }
     onLoadSuccess(response){
-        console.log(response)
         this.setState({teams: response});
     }
 
