@@ -7,28 +7,30 @@ export default class UsersPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams: []
+            users: []
         };
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
+
         this.addUser = this.addUser.bind(this);
     }
     componentDidMount(){
         loadUsers(this.onLoadSuccess);
     }
     onLoadSuccess(response){
-        this.setState({teams: response});
+        this.setState({users: response});
     }
     addUser(){
-        console.log('add');
+        let teamId = this.props.location.pathname.split('/')[0];
+        console.log(teamId);
     }
     render() {
         return (
             <div>
                 <h1>Users Page</h1>
-                {this.state.teams.map((el,i) =>{
-                    //console.log(el);
+                {this.state.users.map((el,i) =>{
                     return <User key={i}
                                  username={el.username}
+                                 userId={el._id}
                                  addUser ={this.addUser}
                     />
                 })}
