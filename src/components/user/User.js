@@ -11,7 +11,7 @@ export default class User extends Component {
                 <input 
                     type="button" 
                     value="Add User" 
-                    onClick={this.props.addUser}/>
+                    onClick={() => this.props.addUser(this.props.userId)}/>
             </div>
         )
     }

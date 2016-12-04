@@ -12,15 +12,18 @@ export default class UsersPage extends Component {
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
 
         this.addUser = this.addUser.bind(this);
+        
     }
     componentDidMount(){
         loadUsers(this.onLoadSuccess);
     }
     onLoadSuccess(response){
+        //console.log(response);
         this.setState({users: response});
     }
-    addUser(){
+    addUser(userId){
         let teamId = this.props.location.pathname.split('/')[0];
+        console.log(userId);
         console.log(teamId);
     }
     render() {
