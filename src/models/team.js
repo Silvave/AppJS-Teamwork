@@ -16,7 +16,6 @@ function loadTeams(callback) {
     requester.fetch('GET', 'appdata', 'teams', 'kinvey')
         .then(callback);
 }
-
 function loadDetails(teamId, callback) {
     requester.fetch('GET', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(callback);

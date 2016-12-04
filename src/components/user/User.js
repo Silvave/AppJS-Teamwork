@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //Load some CSS
-import {Link} from 'react-router';
+//import {Link} from 'react-router';
 
 export default class User extends Component {
     render() {
