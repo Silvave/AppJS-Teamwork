@@ -2,9 +2,28 @@ import React, {Component} from 'react';
 import './Team.css';
 import {Link} from 'react-router';
 
+import observer from '../../models/observer'
+
 export default class Team extends Component {
+    constructor(props) {//added
+        super(props);
+        //Make check for logged in user through the state
+        this.state = {
+            loggedIn: false
+        };
+        this.sendProjectId = this.sendProjectId.bind(this);
+    }
+    componentDidMount() {//added
+        observer.sendProjectId = this.sendProjectId;
+    }
+    sendProjectId(){//added
+        return this.props.teamId;
+    }
+
+
     render() {
         if (this.props.creator === sessionStorage.getItem('userId')) {
+
             return (
                 <div className="team-box">
                     <span className="spanner">Name</span>

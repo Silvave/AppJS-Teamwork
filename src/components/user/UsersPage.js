@@ -3,6 +3,8 @@ import User from './User';
 import {loadUsers} from '../../models/user';
 //This will be controller-view component
 
+import observer from '../../models/observer'
+
 export default class UsersPage extends Component {
     constructor(props) {
         super(props);
@@ -19,6 +21,7 @@ export default class UsersPage extends Component {
     }
     onLoadSuccess(response){
         //console.log(response);
+        console.log(observer.sendProjectId());//take projectId through the observer
         this.setState({users: response});
     }
     addUser(userId){
