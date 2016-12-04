@@ -38,8 +38,8 @@ export default  class EditForm extends Component {
                         //the submition of this form will send data to the handler with these props
                         className="form-control"
                         type="date"
-                        name="beginning"
-                        value={this.props.beginning}
+                        name="start"
+                        value={this.props.start}
                         onChange={this.props.onChange}
                     />
                 </div>

@@ -17,10 +17,9 @@ function loadTeams(callback) {
     requester.get('appdata', 'teams/?query={"_acl.creator":"'+sessionStorage.getItem('userId') +'"}', 'kinvey')
         .then(callback);
 }
-<<<<<<< HEAD
-=======
+
 function loadMemberTeams(callback) {
-    let responseArray = []
+    let responseArray = [];
     requester.get('user',sessionStorage.getItem('userId') , 'kinvey')
         .then(function (user) {
             for(let team of user['member-of']){
@@ -28,15 +27,17 @@ function loadMemberTeams(callback) {
             }
         }).then(()=>callback(responseArray));
 }
->>>>>>> 23b89b5cc9346cc17d2ac146cee2743d9eb091bd
+
 function loadDetails(teamId, callback) {
     requester.get('appdata', 'teams/' + teamId, 'kinvey')
         .then(callback);
 }
-function edit(teamId, name, description, callback) {
+function edit(teamId, name, description, start, deadline, callback) {
     let teamData = {
         name: name,
-        description: description
+        description: description,
+        start: start,
+        deadline: deadline
     };
     requester.update('appdata', 'teams/' + teamId, 'kinvey', teamData)
         .then(() => callback(true))

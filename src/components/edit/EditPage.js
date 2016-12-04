@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import EditForm from '../create/CreateForm';
+import EditForm from './EditForm';
 import {loadDetails, edit} from '../../models/team';
 //import observer from '../../models/observer';
 
@@ -12,6 +12,8 @@ export default class EditPage extends Component {
         this.state = {
             name: '',
             description: '',
+            start: '',
+            deadline: '',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -19,6 +21,7 @@ export default class EditPage extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onEditSuccess = this.onEditSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
+        this.redirect = this.redirect.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +32,8 @@ export default class EditPage extends Component {
         this.setState({
             name: response.name,
             description: response.description,
+            start: response.start,
+            deadline: response.deadline,
             inputDisabled: false
         });
     }
@@ -57,14 +62,22 @@ export default class EditPage extends Component {
             alert('Team name must be at least 3 chars long')
         }
         else{
-            edit(this.props.params.teamId, this.state.name,this.state.description,this.onEditSuccess)
+            edit(this.props.params.teamId,
+                this.state.name,
+                this.state.description,
+                this.state.start,
+                this.state.deadline,
+                this.onEditSuccess)
         }
     }
 
     //the callback for the promise
     onEditSuccess(result) {
-        //alert('success');
         this.context.router.push('/catalog');
+    }
+
+    redirect(){
+        this.context.router.redirect('/catalog');
     }
 
     render() {
@@ -74,9 +87,12 @@ export default class EditPage extends Component {
                 <EditForm
                     name={this.state.name}
                     description={this.state.description}
+                    start={this.state.start}
+                    deadline={this.state.deadline}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
+                    redirect={this.redirect}
                 />
             </div>
         )
