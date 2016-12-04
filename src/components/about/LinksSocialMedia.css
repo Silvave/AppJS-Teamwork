@@ -1,0 +1,9 @@
+.links a{
+    padding: 2px;
+    opacity: 0.5;
+}
+.links a:hover{
+    opacity: 1;
+    transition:opacity .4s;
+}
+
