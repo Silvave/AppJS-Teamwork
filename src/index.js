@@ -27,7 +27,7 @@ ReactDOM.render(
             <Route path="create" component={Create}/>
             <Route path="edit/:teamId" component={Edit}/>
             <Route path="delete/:teamId" component={Delete}/>
-            <Route path="users" component={User}/>
+            <Route path=":teamId/users" component={User}/>
         </Route>
     </Router>,
     document.getElementById('root')

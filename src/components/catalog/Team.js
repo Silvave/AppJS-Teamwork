@@ -18,7 +18,7 @@ export default class Team extends Component {
                     <span className="spanner">Management</span>
                     <Link to={"/edit/" + this.props.teamId} className="btn btn-default">Edit</Link>
                     <Link to={"/delete/" + this.props.teamId} className="btn btn-default">Delete</Link>
-                    <Link to={"/users"} className="btn btn-default">Add Users</Link>
+                    <Link to={this.props.teamId + "/users"} className="btn btn-default">Add Users</Link>
                 </div>
             )
         }

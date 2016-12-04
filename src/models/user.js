@@ -44,10 +44,9 @@ function logout(callback) {
 }
 
 function loadUsers(callback) {
-    requester.fetch('GET', 'appdata', 'users', 'kinvey')
+    requester.fetch('GET', 'user', '', 'kinvey')
         .then(callback);
 }
-
 
 export {
     login,

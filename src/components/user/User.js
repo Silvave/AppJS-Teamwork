@@ -7,7 +7,11 @@ export default class User extends Component {
         return (
             <div className="team-box">
                 <span className="spanner">Name</span>
-                <span className="spanner">{this.props.name}</span>
+                <span className="spanner">{this.props.username}</span>
+                <input 
+                    type="button" 
+                    value="Add User" 
+                    onClick={this.props.addUser}/>
             </div>
         )
     }
