@@ -1,46 +1,51 @@
 import * as requester from './requester';
 
-function createTeam(name, description, startDate, endDate, callback) {
+
+function create(name, description,start,deadline, callback) {
     let teamData = {
         name: name,
         description: description,
-        beginning: startDate,
-        deadline: endDate
+        start:start,
+        deadline:deadline
     };
-    requester.fetch('POST', 'appdata', 'teams', 'kinvey', teamData)
+    requester.post('appdata', 'teams', 'kinvey', teamData)
         .then(() => callback(true))
         .catch(() => callback(false))
 }
 
 function loadTeams(callback) {
-    requester.fetch('GET', 'appdata', 'teams', 'kinvey')
+    requester.get('appdata', 'teams/?query={"_acl.creator":"'+sessionStorage.getItem('userId') +'"}', 'kinvey')
         .then(callback);
 }
+<<<<<<< HEAD
+=======
+function loadMemberTeams(callback) {
+    let responseArray = []
+    requester.get('user',sessionStorage.getItem('userId') , 'kinvey')
+        .then(function (user) {
+            for(let team of user['member-of']){
+                requester.get('appdata','teams/'+team,'kinvey').then((data)=>responseArray.push(data))
+            }
+        }).then(()=>callback(responseArray));
+}
+>>>>>>> 23b89b5cc9346cc17d2ac146cee2743d9eb091bd
 function loadDetails(teamId, callback) {
-    requester.fetch('GET', 'appdata', 'teams/' + teamId, 'kinvey')
+    requester.get('appdata', 'teams/' + teamId, 'kinvey')
         .then(callback);
 }
-function editTeam(teamId, name, description, beginning, deadline, callback) {
+function edit(teamId, name, description, callback) {
     let teamData = {
         name: name,
-        description: description,
-        beginning: beginning,
-        deadline: deadline
+        description: description
     };
-    requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
+    requester.update('appdata', 'teams/' + teamId, 'kinvey', teamData)
         .then(() => callback(true))
         .catch(() => callback(false))
 }
-function deleteTeam(teamId, callback) {
-    requester.fetch('DELETE', 'appdata', 'teams/' + teamId, 'kinvey')
-        .then(() => callback(true))
-        .catch(() => callback(false))
-}
-
 export {
-    createTeam,
+    loadMemberTeams,
+    create,
     loadTeams,
     loadDetails,
-    editTeam,
-    deleteTeam
+    edit
 }

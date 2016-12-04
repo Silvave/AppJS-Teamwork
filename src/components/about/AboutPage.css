@@ -1,0 +1,13 @@
+table {
+    border-radius: 5px;
+}
+
+table td {
+    background-color: white;
+    margin: 12px 12px 12px 12px;
+    padding: 12px 12px 12px 12px;
+}
+
+td.media {
+    text-align: center;
+}

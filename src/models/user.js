@@ -1,6 +1,5 @@
 import * as requester from './requester';
 
-
 //Save session
 function saveUserAuth(userObj) {
     sessionStorage.setItem('authToken', `${userObj._kmd.authtoken}`);
@@ -13,7 +12,7 @@ function login(username, password, callback) {
         username: username,
         password: password
     };
-    requester.fetch('POST', 'user', 'login', 'basic', userData)
+    requester.post('user', 'login', 'basic', userData)
         .then((response) => {
             saveUserAuth(response);
             callback(true);
@@ -26,31 +25,41 @@ function register(username, password, callback) {
         username: username,
         password: password
     };
-    requester.fetch('POST', 'user', '', 'basic', userData)
+    requester.post('user', '', 'basic', userData)
         .then((response) => {
             saveUserAuth(response);
             callback(true);
         })
 }
+function addUserToTeam (userId, teamId, callback) {
+    let user = requester.get('user','?query={"_id":"'+ userId +'"}',);
+    console.log(user)
 
+
+    // let userData = {
+    //     username: username,
+    //     password: password,
+    //     memberOf:[],
+    // };
+    // requester.post('user', '', 'basic', userData)
+    //     .then((response) => {
+    //         saveUserAuth(response);
+    //         callback(true);
+    //     })
+}
+
+//logout
 function logout(callback) {
-    requester.fetch('POST', 'user', '_logout', 'kinvey', null)
-        .then((response) => {
+    requester.post('user', '_logout', 'kinvey', null)
+        .then((response) =>{
             sessionStorage.clear();
             callback(true);
         })
         .catch((err) => callback(false));
-
 }
-
-function loadUsers(callback) {
-    requester.fetch('GET', 'user', '', 'kinvey')
-        .then(callback);
-}
-
 export {
+    // addUserToTeam,
     login,
     register,
-    logout,
-    loadUsers
+    logout
 }

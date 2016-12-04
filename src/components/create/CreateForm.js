@@ -32,16 +32,15 @@ export default  class CreateForm extends Component {
                 </div>
                 <div className="form-group">
                     <label>
-                        Beginning
+                        Start Date
                     </label>
                     <input
                         //the submition of this form will send data to the handler with these props
                         className="form-control"
                         type="date"
-                        name="beginning"
-                        value={this.props.beginning}
+                        name="start"
+                        value={this.props.start}
                         onChange={this.props.onChange}
-                        required
                     />
                 </div>
                 <div className="form-group">
@@ -55,7 +54,6 @@ export default  class CreateForm extends Component {
                         name="deadline"
                         value={this.props.deadline}
                         onChange={this.props.onChange}
-                        required
                     />
                 </div>
                 <input
