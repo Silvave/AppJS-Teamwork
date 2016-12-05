@@ -2,16 +2,15 @@ import * as requester from './requester';
 
 
 function loadMeetings(teamId,callback) {
-    let responseArray = [];
     let meetingsQuery = `teams/` + teamId;
     requester.fetch('GET', 'appdata', meetingsQuery, 'kinvey')
         .then(function (team) {
+            let promiseArray = [];
             for(let meeting of team['meetings']){
-                requester.fetch("GET", 'appdata','meetings/' + meeting,'kinvey')
-                    .then((data) => responseArray.push(data));
+                promiseArray.push(requester.fetch("GET", 'appdata','meetings/' + meeting,'kinvey'))
             }
+            Promise.all(promiseArray).then(callback)
         });
-    setTimeout(() => callback(responseArray), 1000);
 }
 
 function createMeeting(teamId,topic,time,callback) {

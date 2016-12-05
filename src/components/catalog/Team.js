@@ -9,8 +9,6 @@ export default class Team extends Component{
                 <div className="card card-block">
                     <p className="card-text">Name</p>
                     <h3 className="card-title">{this.props.name}</h3>
-                    <span className="spanner">Name</span>
-                    <p>{this.props.name}</p>
                     <span className="spanner">Description</span>
                     <p>{this.props.description || "Description is empty"}</p>
                     <span className="spanner">Beginning</span>

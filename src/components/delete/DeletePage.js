@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
 import {loadTeamDetails, deleteTeam, loadTeams} from '../../models/team';
-//import observer from '../../models/observer';
 
 export default class DeletePage extends Component {
     constructor(props) {
@@ -50,7 +49,7 @@ export default class DeletePage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        if(this.state.name.length < 4){
+        if(this.state.name.length < 3){
             alert('Team name must be at least 3 chars long')
         }
         else{

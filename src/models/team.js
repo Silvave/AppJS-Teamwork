@@ -1,5 +1,6 @@
 import * as requester from './requester';
 
+
 function createTeam(name, description, startDate, endDate, callback) {
     let teamData = {
         name: name,
@@ -20,16 +21,14 @@ function loadTeams(callback) {
 }
 
 function loadMemberTeams(callback) {
-    let responseArray = [];
     requester.fetch("GET", 'user',sessionStorage.getItem('userId') , 'kinvey')
         .then(function (user) {
-            let promiseArray = []
+            let promiseArray = [];
             for(let team of user['member-of']){
                 promiseArray.push(requester.fetch("GET", 'appdata','teams/' + team,'kinvey'));
             }
             Promise.all(promiseArray).then(callback)
         });
-    // setTimeout(() => callback(responseArray), 1000);
 }
 
 function loadTeamDetails(teamId, callback) {

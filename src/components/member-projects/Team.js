@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './Team.css';
 import {Link} from 'react-router';
-import $ from 'jquery'
 
 export default class Team extends Component{
 

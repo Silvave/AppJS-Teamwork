@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Meeting.css';
-import {Link} from 'react-router';
+
 
 export default class Meeting extends Component{
     render(){
