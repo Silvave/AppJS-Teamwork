@@ -24,7 +24,8 @@ function login(username, password, callback) {
 function register(username, password, callback) {
     let userData = {
         username: username,
-        password: password
+        password: password,
+        ['member-of']: []
     };
 
     requester.fetch('POST', 'user', '', 'basic', userData)
@@ -78,11 +79,9 @@ function pushUsersArrayToTheTeam(teamId, userArr, callback) {
         .catch((err) => console.log(err));
 }
 
-function updateUser(userId, data) {
+function updateUser(userId, data, callback) {
     requester.fetch('PUT', 'user', userId, 'master', data)
-        .then((response) => {
-            console.log('member-of updated')
-        })
+        .then(callback)
         .catch((err) => console.log(err));
 }
 

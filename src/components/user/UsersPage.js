@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import User from './User';
-import {loadUsers, getUserById, pushUsersArrayToTheTeam, updateUser} from '../../models/user';
+import {loadUsers, getUserById, updateUser} from '../../models/user';
 //This will be controller-view component
 
 
@@ -14,6 +14,7 @@ export default class UsersPage extends Component {
 
         this.addUser = this.addUser.bind(this);
         /*this.deselectUser = this.deselectUser.bind(this);*/
+        this.reloadUsersPage = this.reloadUsersPage.bind(this);
     }
 
     componentDidMount() {
@@ -21,27 +22,26 @@ export default class UsersPage extends Component {
     }
 
     onLoadSuccess(response) {
-
         let responseArr = [];
-        this.setState({users: response});
-        response.map((a) => {
-            if (a['member-of'].includes(this.context.router.params.teamId) || a._id === sessionStorage.getItem('userId')) {
-                
-            }
-            else {
-                responseArr.push(a);
+        let teamId = this.context.router.params.teamId;
+        let userId = sessionStorage.getItem('userId');
+
+        for (var i = 0; i < response.length; i++) {
+            let user = response[i];
+            if (!user['member-of'].includes(teamId)
+                && user._id !== userId) {
+                responseArr.push(user);
             }
             this.setState({users: responseArr})
-        });
+        }
     }
 
     addUser(userId) {
-        getUserById(userId, updateUsersProjects);
+        getUserById(userId, updateUsersProjects.bind(this));
         let teamId = this.context.router.params.teamId;
 
         function updateUsersProjects(user) {
             let arr = [];
-
             if (user['member-of'] !== undefined) {
                 arr = user['member-of'];
             }
@@ -50,12 +50,13 @@ export default class UsersPage extends Component {
                 username: user.username,
                 'member-of': arr
             };
-            updateUser(user._id, data);
-
-
-            //console.log(user._id);
-            //console.log(arr);
+            updateUser(user._id, data, this.reloadUsersPage);
         }
+    }
+
+    reloadUsersPage() {
+        alert('Are you sure you want to add this user to this team');
+        loadUsers(this.onLoadSuccess);
     }
 
     //deselectUser(userId){
