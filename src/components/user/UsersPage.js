@@ -29,7 +29,8 @@ export default class UsersPage extends Component {
 
     addUser(userId){
         //console.log(userId);
-        observer.sendProjectId();
+        //observer.sendProjectId();
+        console.log()
     }
 
     render() {
