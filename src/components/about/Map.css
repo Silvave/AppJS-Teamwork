@@ -1,6 +1,4 @@
-iframe {
-    width: 500px;
-    height: 470px;
+img#map {
     border: 2px solid lightskyblue;
     border-radius: 5px;
 }
