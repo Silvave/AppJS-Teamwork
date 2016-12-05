@@ -23,14 +23,13 @@ export default class UsersPage extends Component {
     }
 
     onLoadSuccess(response){
-        //observer.sendProjectId();//take projectId through the observer
         this.setState({users: response});
     }
 
     addUser(userId){
-        //console.log(userId);
-        //observer.sendProjectId();
-        console.log()
+        let teamId = this.context.router.params.teamId;
+        
+        
     }
 
     render() {
@@ -48,3 +47,6 @@ export default class UsersPage extends Component {
         )
     }
 }
+UsersPage.contextTypes = {
+    router: React.PropTypes.object
+};

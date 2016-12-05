@@ -24,6 +24,7 @@ export default class CatalogPage extends Component {
         if(this.state.teams.length > 0){
             content =  this.state.teams.map((el,i) =>{
                 // console.log(el);
+                
                 return <Team key={i}
                              name={el.name}
                              description={el.description}
