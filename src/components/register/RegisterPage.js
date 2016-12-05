@@ -5,7 +5,7 @@ import observer from '../../models/observer';
 
 
 export default class RegisterPage extends Component {
-    constructor(props){
+    constructor(props) {
         //Get props from the parent
         super(props);
         //Set default state
@@ -13,6 +13,7 @@ export default class RegisterPage extends Component {
             username: '',
             password: '',
             repeat: '',
+            ['member-of']: [],
             inputDisabled: false
         };
         //Bind functions with parent class
@@ -20,6 +21,7 @@ export default class RegisterPage extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onRegisterSuccess = this.onRegisterSuccess.bind(this);
     }
+
     //Change state of this.props, binding them with the input fields.value with onChange handler
     onChangeHandler(ev) {
         ev.preventDefault();
@@ -34,46 +36,48 @@ export default class RegisterPage extends Component {
         ev.preventDefault();
         //use this for prevent form to be submitted more than once
         this.setState({
-            inputDisabled:true
+            inputDisabled: true
         });
         //Some validations
-        if(this.state.password !== this.state.repeat){
+        if (this.state.password !== this.state.repeat) {
             this.setState({
-                inputDisabled:false
+                inputDisabled: false
             });
             alert('passwords do not match')
         }
-        else{
-            register(this.state.username,this.state.password,this.onRegisterSuccess);
+        else {
+            register(this.state.username, this.state.password, this.onRegisterSuccess);
         }
         //send data and callback function for the ajax request
 
     }
+
     //the callback for the promise
-    onRegisterSuccess(result){
+    onRegisterSuccess(result) {
         this.setState({
-            inputDisabled:false
+            inputDisabled: false
         });
         //Use the observer here to update the session and reload links when login/register
         observer.onSessionUpdate();
         //redirect user to 'Home' when login is success
         this.context.router.push('/');
     }
+
     render() {
         //Prevent logged user to see login/register forms
-        if(sessionStorage.getItem('username')){
+        if (sessionStorage.getItem('username')) {
             this.context.router.push('/');
         }
         return (
             <div>
                 <h1>Register</h1>
                 <RegisterForm
-                username={this.state.username}
-                password={this.state.password}
-                repeat={this.state.repeat}
-                onChange={this.onChangeHandler}
-                onSubmit={this.onSubmitHandler}
-                inputDisabled={this.state.inputDisabled}
+                    username={this.state.username}
+                    password={this.state.password}
+                    repeat={this.state.repeat}
+                    onChange={this.onChangeHandler}
+                    onSubmit={this.onSubmitHandler}
+                    inputDisabled={this.state.inputDisabled}
                 />
             </div>
         )
