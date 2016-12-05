@@ -17,6 +17,18 @@ function loadTeams(callback) {
     requester.fetch('GET', 'appdata', teamsQuery, 'kinvey')
         .then(callback);
 }
+function loadMeetings(teamId,callback) {
+    let responseArray = [];
+     let meetingsQuery = `teams/` + teamId;
+     requester.fetch('GET', 'appdata', meetingsQuery, 'kinvey')
+         .then(function (team) {
+             for(let meeting of team['meetings']){
+                 requester.fetch("GET", 'appdata','meetings/' + meeting,'kinvey')
+                     .then((data) => responseArray.push(data));
+             }
+         });
+    setTimeout(() => callback(responseArray), 1000);
+}
 
 function loadMemberTeams(callback) {
     let responseArray = [];
@@ -56,6 +68,7 @@ function deleteTeam(teamId, callback) {
 
 export {
     loadTeams,
+    loadMeetings,
     loadTeamDetails,
     loadMemberTeams,
     createTeam,

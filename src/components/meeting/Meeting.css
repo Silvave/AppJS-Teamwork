@@ -1,0 +1,10 @@
+.team-box{
+    float:left;
+    width: 20em;
+    border: 3px solid lightskyblue;
+    margin: 1em;
+}
+.spanner{
+    display: block;
+    background-color: lightskyblue;
+}

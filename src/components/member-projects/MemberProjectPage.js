@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Team from './Team';
 import {loadMemberTeams} from '../../models/team';
 import {Link} from 'react-router'
+import $ from 'jquery'
 //This will be controller-view component
 
 export default class MemberProjectsPage extends Component {
@@ -11,6 +12,7 @@ export default class MemberProjectsPage extends Component {
             teams: []
         };
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
     }
 
     componentDidMount(){
@@ -19,6 +21,12 @@ export default class MemberProjectsPage extends Component {
 
     onLoadSuccess(response){
         this.setState({teams: response});
+    }
+    onSubmit(event){
+        event.preventDefault();
+        console.log('a')
+       sessionStorage.setItem('teamId',$(event.target).closest($('.col-sm-4')).attr('id'))
+
     }
 
     render() {
@@ -33,7 +41,9 @@ export default class MemberProjectsPage extends Component {
         return (
             <div>
                 <h1>My Projects</h1>
-                {content}
+                <div>
+                    {content}
+                </div>
             </div>
         )
     }
