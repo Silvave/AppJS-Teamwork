@@ -34,8 +34,8 @@ function register(username, password, callback) {
         })
 }
 
-function addUserToTeam (userId, teamId, callback) {
-    let user = requester.fetch("GET", 'user','?query={"_id":"'+ userId +'"}');
+function addUserToTeam(userId, teamId, callback) {
+    let user = requester.fetch("GET", 'user', '?query={"_id":"' + userId + '"}');
     console.log(user);
 
 
@@ -60,10 +60,30 @@ function logout(callback) {
         })
         .catch((err) => callback(false));
 }
+function getUserById(userId, callback) {
+    requester.fetch('GET', 'user', userId, 'kinvey')
+        .then((response) => {
+            callback(response);
+        })
+        .catch((err) => console.log(err));
 
+}
 function loadUsers(callback) {
     requester.fetch('GET', 'user', '', 'kinvey')
         .then(callback);
+}
+function pushUsersArrayToTheTeam(teamId, userArr, callback) {
+    requester.fetch('POST', 'appdata', teamId, 'user', userArr)
+        .then(callback)
+        .catch((err) => console.log(err));
+}
+
+function updateUser(userId, data) {
+    requester.fetch('PUT', 'user', userId, 'master', data)
+        .then((response) => {
+            console.log('member-of updated')
+        })
+        .catch((err) => console.log(err));
 }
 
 export {
@@ -71,5 +91,8 @@ export {
     login,
     logout,
     register,
-    loadUsers
+    loadUsers,
+    getUserById,
+    pushUsersArrayToTheTeam,
+    updateUser
 }
