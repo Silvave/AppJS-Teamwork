@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import EditForm from './EditForm';
-import {loadDetails, edit} from '../../models/team';
+import {loadTeamDetails, editTeam} from '../../models/team';
 //import observer from '../../models/observer';
 
 
@@ -12,7 +12,7 @@ export default class EditPage extends Component {
         this.state = {
             name: '',
             description: '',
-            start: '',
+            beginning: '',
             deadline: '',
             inputDisabled: true
         };
@@ -25,14 +25,14 @@ export default class EditPage extends Component {
     }
 
     componentDidMount() {
-        loadDetails(this.props.params.teamId, this.onLoadSuccess);
+        loadTeamDetails(this.props.params.teamId, this.onLoadSuccess);
     }
 
     onLoadSuccess(response) {
         this.setState({
             name: response.name,
             description: response.description,
-            start: response.start,
+            beginning: response.beginning,
             deadline: response.deadline,
             inputDisabled: false
         });
@@ -44,7 +44,7 @@ export default class EditPage extends Component {
         let newState = {};
         newState[ev.target.name] = ev.target.value;
         if (ev.target.name === "name") {
-            if (ev.target.value.length < 4) {
+            if (ev.target.value.length < 3) {
                 newState.inputDisabled = true;
             }
             else {
@@ -62,10 +62,11 @@ export default class EditPage extends Component {
             alert('Team name must be at least 3 chars long')
         }
         else{
-            edit(this.props.params.teamId,
+            editTeam(
+                this.props.params.teamId,
                 this.state.name,
                 this.state.description,
-                this.state.start,
+                this.state.beginning,
                 this.state.deadline,
                 this.onEditSuccess)
         }
@@ -77,7 +78,7 @@ export default class EditPage extends Component {
     }
 
     redirect(){
-        this.context.router.redirect('/catalog');
+        this.context.router.push('/catalog');
     }
 
     render() {
@@ -87,7 +88,7 @@ export default class EditPage extends Component {
                 <EditForm
                     name={this.state.name}
                     description={this.state.description}
-                    start={this.state.start}
+                    beginning={this.state.beginning}
                     deadline={this.state.deadline}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}

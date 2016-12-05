@@ -1,52 +1,69 @@
 import * as requester from './requester';
 
 
-function create(name, description,start,deadline, callback) {
+function createTeam(name, description, startDate, endDate, callback) {
     let teamData = {
         name: name,
         description: description,
-        start:start,
-        deadline:deadline
+        beginning: startDate,
+        deadline: endDate
     };
-    requester.post('appdata', 'teams', 'kinvey', teamData)
+    requester.fetch('POST', 'appdata', 'teams', 'kinvey', teamData)
         .then(() => callback(true))
         .catch(() => callback(false))
 }
 
 function loadTeams(callback) {
-    requester.get('appdata', 'teams/?query={"_acl.creator":"'+sessionStorage.getItem('userId') +'"}', 'kinvey')
+    let teamsQuery = `teams/?query={"_acl.creator":"${sessionStorage.getItem('userId')}"}`;
+    requester.fetch('GET', 'appdata', teamsQuery, 'kinvey')
         .then(callback);
 }
 
 function loadMemberTeams(callback) {
     let responseArray = [];
-    requester.get('user',sessionStorage.getItem('userId') , 'kinvey')
+    requester.fetch("GET", 'user',sessionStorage.getItem('userId') , 'kinvey')
         .then(function (user) {
             for(let team of user['member-of']){
-                requester.get('appdata','teams/'+team,'kinvey').then((data)=>responseArray.push(data))
+                console.log(team);
+                requester.fetch("GET", 'appdata','teams/' + team,'kinvey')
+                    .then((data) => responseArray.push(data));
             }
-        }).then(()=>callback(responseArray));
+        }).then(function() {
+            // TODO: One time added obj to responseArray but all others didn't... WTF?!?
+            console.log(responseArray);
+            callback(responseArray)
+        });
 }
 
-function loadDetails(teamId, callback) {
-    requester.get('appdata', 'teams/' + teamId, 'kinvey')
+function loadTeamDetails(teamId, callback) {
+    requester.fetch("GET", 'appdata', 'teams/' + teamId, 'kinvey')
         .then(callback);
 }
-function edit(teamId, name, description, start, deadline, callback) {
+
+function editTeam(teamId, name, description, beginning, deadline, callback) {
     let teamData = {
         name: name,
         description: description,
-        start: start,
+        beginning: beginning,
         deadline: deadline
     };
-    requester.update('appdata', 'teams/' + teamId, 'kinvey', teamData)
+
+    requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
         .then(() => callback(true))
         .catch(() => callback(false))
 }
+
+function deleteTeam(teamId, callback) {
+    requester.fetch('DELETE', 'appdata', 'teams/' + teamId, 'kinvey')
+        .then(() => callback(true))
+        .catch(() => callback(false))
+}
+
 export {
-    loadMemberTeams,
-    create,
     loadTeams,
-    loadDetails,
-    edit
+    loadTeamDetails,
+    loadMemberTeams,
+    createTeam,
+    editTeam,
+    deleteTeam
 }

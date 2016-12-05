@@ -51,9 +51,6 @@ export default class LoginPage extends Component {
             //redirect user to 'Home' when login is success
             this.context.router.push('/');
         }
-
-
-
     }
 
     render() {

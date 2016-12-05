@@ -10,7 +10,8 @@ export default class HomePage extends Component {
             if (sessionStorage.getItem('teamId')) {
                 message = <Link to={"/catalog/" + sessionStorage.getItem('teamId')}>Go to my team</Link>
             } else {
-                message = <p>You are currently not a member of a team. View the <Link to="/catalog">catalog</Link> to join or create one.</p>;
+                let link = <Link to="/catalog">catalog</Link>;
+                message = <p>You are currently not a member of a team. View the {link} to join or create one.</p>;
             }
         }
         return (

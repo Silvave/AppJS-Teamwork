@@ -17,17 +17,21 @@ export default class UsersPage extends Component {
         this.addUser = this.addUser.bind(this);
 
     }
+
     componentDidMount(){
         loadUsers(this.onLoadSuccess);
     }
+
     onLoadSuccess(response){
         //observer.sendProjectId();//take projectId through the observer
         this.setState({users: response});
     }
+
     addUser(userId){
         //console.log(userId);
         observer.sendProjectId();
     }
+
     render() {
         return (
             <div>

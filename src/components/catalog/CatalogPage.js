@@ -23,12 +23,12 @@ export default class CatalogPage extends Component {
         let content =<h3>You have not created any projects yet. <Link to="/create">Create your first project</Link></h3>;
         if(this.state.teams.length > 0){
             content =  this.state.teams.map((el,i) =>{
-                console.log(el);
+                // console.log(el);
                 return <Team key={i}
                              name={el.name}
                              description={el.description}
                              teamId={el._id}
-                             start={el.start}
+                             beginning={el.beginning}
                              deadline={el.deadline}
                 />
             })}

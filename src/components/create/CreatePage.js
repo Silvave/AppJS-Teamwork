@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CreateForm from './CreateForm';
-import {create} from '../../models/team';
+import {createTeam} from '../../models/team';
 import {addUserToTeam} from '../../models/user'
 //import observer from '../../models/observer';
 
@@ -13,8 +13,8 @@ export default class CreatePage extends Component {
         this.state = {
             name: '',
             description: '',
-            start:'',
-            deadline:'',
+            beginning: '',
+            deadline: '',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -28,7 +28,7 @@ export default class CreatePage extends Component {
         let newState = {};
         newState[ev.target.name] = ev.target.value;
         if(ev.target.name === "name"){
-            if(ev.target.value.length < 4){
+            if(ev.target.value.length < 3){
                 newState.inputDisabled = true;
             }
             else{
@@ -43,12 +43,11 @@ export default class CreatePage extends Component {
         //Prevent refreshing the page
         ev.preventDefault();
 
-        create(this.state.name,
+        createTeam(this.state.name,
             this.state.description,
-            this.state.start,
+            this.state.beginning,
             this.state.deadline,
             this.onCreateSuccess);
-
     }
     //the callback for the promise
     onCreateSuccess(result){
@@ -60,13 +59,13 @@ export default class CreatePage extends Component {
             <div>
                 <h1>Create Team Page</h1>
                 <CreateForm
-                username={this.state.name}
-                password={this.state.description}
-                start={this.state.start}
-                deadline={this.state.deadline}
-                onChange={this.onChangeHandler}
-                onSubmit={this.onSubmitHandler}
-                inputDisabled={this.state.inputDisabled}
+                    name={this.state.name}
+                    description={this.state.description}
+                    startDate={this.state.beginning}
+                    endDate={this.state.deadline}
+                    onChange={this.onChangeHandler}
+                    onSubmit={this.onSubmitHandler}
+                    inputDisabled={this.state.inputDisabled}
                 />
             </div>
         )

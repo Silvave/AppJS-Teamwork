@@ -1,57 +1,30 @@
-//This function main work is to make response with the DB
+//This function main work is to communicate with the Kinvey DB
 import $ from 'jquery';
 
 const kinveyUrl = 'https://baas.kinvey.com/';
-const appKey = 'kid_HJYL52Tfl';
-const appSecret = '21f05a36964841a69ff556438ac4d2df';
+const appKey = 'kid_B1a7PGeQg';
+const appSecret = '778cc223897349649d77214daa914bd5';
 
-function getHeader(auth) {
-    let header = {"Authorization": ""};
+function getHeaders(auth) {
+    let headers = {};
     switch (auth) {
         case "basic":
-            header["Authorization"] = "Basic " + btoa(appKey + ':' + appSecret);
+            headers["Authorization"] = "Basic " + btoa(appKey + ':' + appSecret);
             break;
         case "kinvey":
-            header["Authorization"] = "Kinvey " + sessionStorage.getItem('authToken');
+            headers["Authorization"] = "Kinvey " + sessionStorage.getItem('authToken');
             break;
         default:
     }
-    return header;
+    return headers;
 }
 
-function get(module, url, auth) {
+export function fetch(method, module, url, auth, data) {
     let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
-    let header = getHeader(auth);
-
-    return $.ajax({
-        method: 'GET',
-        url: hostUrl,
-        headers: header
-    });
-}
-
-function post(module, url, auth, data) {
-    let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
-    let header = getHeader(auth);
+    let header = getHeaders(auth);
 
     let request = {
-        method: 'POST',
-        url: hostUrl,
-        headers: header
-    };
-    if (data) {
-        request.data = data;
-    }
-
-    return $.ajax(request);
-}
-
-function update(module, url, auth, data) {
-    let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
-    let header = getHeader(auth);
-
-    let request = {
-        method: 'PUT',
+        method: method,
         url: hostUrl,
         headers: header,
         data: data
@@ -59,9 +32,3 @@ function update(module, url, auth, data) {
 
     return $.ajax(request);
 }
-
-export {
-    get,
-    post,
-    update
-};

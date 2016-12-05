@@ -3,7 +3,6 @@ import './Team.css';
 import {Link} from 'react-router';
 
 
-
 /*export default class Team extends Component {
     
     render() {
@@ -52,7 +51,7 @@ export default class Team extends Component{
                 <span className="spanner">Description</span>
                 <p>{this.props.description || "Description is empty"}</p>
                 <span className="spanner">Beginning</span>
-                <p>{this.props.start}</p>
+                <p>{this.props.beginning}</p>
                 <span className="spanner">Deadline</span>
                 <p>{this.props.deadline}</p>
                 <span className="spanner">Management</span>
@@ -61,6 +60,5 @@ export default class Team extends Component{
                 <Link to={this.props.teamId + "/users"} className="btn btn-default">Add Members</Link>
             </div>
         )
-
     }
 }

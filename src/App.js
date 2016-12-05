@@ -63,6 +63,7 @@ export default class App extends Component {
                 </div>
             );
         }
+
         return (
             <div className="container">
                 <Header loggedIn={this.state.loggedIn} username={this.state.username}>

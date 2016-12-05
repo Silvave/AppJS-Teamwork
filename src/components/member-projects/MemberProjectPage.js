@@ -12,19 +12,24 @@ export default class MemberProjectsPage extends Component {
         };
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
     }
+
     componentDidMount(){
         loadMemberTeams(this.onLoadSuccess);
     }
+
     onLoadSuccess(response){
         this.setState({teams: response});
     }
 
     render() {
-        let content =<h3>You have not created any projects yet. <Link to="/create">Create your first project</Link></h3>;
+        let link = <Link to="/create">Create your first project</Link>;
+        let content =<h3>You have not created any projects yet. {link}</h3>;
+
         if(this.state.teams.length > 0){
-            content =  this.state.teams.map((el,i) =>{
+            content =  this.state.teams.map((el,i) => {
                 return <Team key={i} name={el.name} description={el.description} teamId={el._id}/>
             })}
+
         return (
             <div>
                 <h1>My Projects</h1>

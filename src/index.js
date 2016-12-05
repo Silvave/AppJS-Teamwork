@@ -11,6 +11,8 @@ import Login from './components/login/LoginPage';
 import Home from './components/home/HomePage';
 import Create from './components/create/CreatePage';
 import Edit from './components/edit/EditPage';
+import Delete from './components/delete/DeletePage';
+import User from './components/user/UsersPage';
 import MemberPage from './components/member-projects/MemberProjectPage'
 
 
@@ -26,6 +28,8 @@ ReactDOM.render(
             <Route path="create" component={Create}/>
             <Route path="member-projects" component={MemberPage}/>
             <Route path="edit/:teamId" component={Edit}/>
+            <Route path="delete/:teamId" component={Delete}/>
+            <Route path=":teamId/users" component={User}/>
         </Route>
     </Router>,
     document.getElementById('root')

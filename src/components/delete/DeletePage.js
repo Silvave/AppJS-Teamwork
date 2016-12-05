@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
-import {loadDetails, deleteTeam, loadTeams} from '../../models/team';
+import {loadTeamDetails, deleteTeam, loadTeams} from '../../models/team';
 //import observer from '../../models/observer';
 
 export default class DeletePage extends Component {
@@ -25,7 +25,7 @@ export default class DeletePage extends Component {
     }
 
     componentDidMount() {
-        loadDetails(this.props.params.teamId, this.onLoadSuccess);
+        loadTeamDetails(this.props.params.teamId, this.onLoadSuccess);
     }
 
     onLoadSuccess(response) {
