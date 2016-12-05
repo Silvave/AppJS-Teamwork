@@ -1,6 +1,5 @@
 import * as requester from './requester';
 
-
 function createTeam(name, description, startDate, endDate, callback) {
     let teamData = {
         name: name,
@@ -24,15 +23,11 @@ function loadMemberTeams(callback) {
     requester.fetch("GET", 'user',sessionStorage.getItem('userId') , 'kinvey')
         .then(function (user) {
             for(let team of user['member-of']){
-                console.log(team);
                 requester.fetch("GET", 'appdata','teams/' + team,'kinvey')
                     .then((data) => responseArray.push(data));
             }
-        }).then(function() {
-            // TODO: One time added obj to responseArray but all others didn't... WTF?!?
-            console.log(responseArray);
-            callback(responseArray)
         });
+    setTimeout(() => callback(responseArray), 1000);
 }
 
 function loadTeamDetails(teamId, callback) {
