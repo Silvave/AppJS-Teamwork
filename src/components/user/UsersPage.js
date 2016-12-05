@@ -21,8 +21,18 @@ export default class UsersPage extends Component {
     }
 
     onLoadSuccess(response) {
-        this.setState({users: response});
 
+        let responseArr = [];
+        this.setState({users: response});
+        response.map((a) => {
+            if (a['member-of'].includes(this.context.router.params.teamId) || a._id === sessionStorage.getItem('userId')) {
+                
+            }
+            else {
+                responseArr.push(a);
+            }
+            this.setState({users: responseArr})
+        });
     }
 
     addUser(userId) {
@@ -32,7 +42,7 @@ export default class UsersPage extends Component {
         function updateUsersProjects(user) {
             let arr = [];
 
-            if(user['member-of'] !== undefined){
+            if (user['member-of'] !== undefined) {
                 arr = user['member-of'];
             }
             arr.push(teamId);
@@ -40,7 +50,6 @@ export default class UsersPage extends Component {
                 username: user.username,
                 'member-of': arr
             };
-
             updateUser(user._id, data);
 
 
@@ -67,10 +76,9 @@ export default class UsersPage extends Component {
                                  username={el.username}
                                  userId={el._id}
                                  addUser={this.addUser}
-                                //deselectUser={this.deselectUser}
+                        //deselectUser={this.deselectUser}
                     />
                 })}
-                <input type="button" value="Commit changes" onClick={() => this.props.addUsersToTeam()}/>
             </div>
         )
     }

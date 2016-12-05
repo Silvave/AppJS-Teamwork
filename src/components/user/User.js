@@ -14,6 +14,6 @@ export default class User extends Component {
                     onClick={() => this.props.addUser(this.props.userId)}
                 />
             </div>
-    )
+        )
     }
 }
