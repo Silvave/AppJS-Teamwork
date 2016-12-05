@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import Meeting from './Meeting';
-import {loadMeetings} from '../../models/meeting';
+import {loadMeetings} from '../../../models/meeting';
 // import {Link} from 'react-router'
 //This will be controller-view component
 
-export default class MemberProjectsPage extends Component {
+export default class EditMeetingsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             meetings: []
         };
+
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
     }
 
@@ -23,15 +24,19 @@ export default class MemberProjectsPage extends Component {
     }
 
     render() {
-        let content =<h3 className="text-muted">You have not created any meetings yet.</h3>;
+        let content =<h3 className="text-muted">There are no meeting to be edited.</h3>;
 
         if(this.state.meetings.length > 0){
             content =  this.state.meetings.map((el,i) => {
-                return <Meeting key={i} topic={el.topic} time={el.time} meetingId={el._id}/>
+                return <Meeting key={i}
+                                topic={el.topic}
+                                time={el.time}
+                                meetingId={el._id}
+                                teamId={(this.props.location.pathname).split('/')[2]}/>
             })}
         return (
             <div>
-                <h1>My Meetings</h1>
+                <h1>Edit Meetings</h1>
                 {content}
             </div>
         )

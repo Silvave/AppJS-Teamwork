@@ -15,6 +15,9 @@ import Delete from './components/delete/DeletePage';
 import User from './components/user/UsersPage';
 import MemberPage from './components/member-projects/MemberProjectPage'
 import Meeting from './components/meeting/MeetingPage'
+import CreateMeeting from './components/meeting/create/CreatePage'
+import EditMeetings from './components/meeting/edit/EditMeetingsPage'
+import EditMeeting from './components/meeting/edit/EditPage'
 
 
 //Manage routes
@@ -29,6 +32,9 @@ ReactDOM.render(
             <Route path="create" component={Create}/>
             <Route path="member-projects" component={MemberPage}/>
             <Route path="meeting/:teamId" component={Meeting}/>
+            <Route path="meeting/:teamId/create" component={CreateMeeting}/>
+            <Route path="meeting/:teamId/edit" component={EditMeetings}/>
+            <Route path="meeting/:teamId/edit/:meetingId" component={EditMeeting}/>
             <Route path="edit/:teamId" component={Edit}/>
             <Route path="delete/:teamId" component={Delete}/>
             <Route path=":teamId/users" component={User}/>

@@ -1,8 +1,12 @@
-.team-box{
+.col-sm-4{
     float:left;
     width: 20em;
     border: 3px solid lightskyblue;
     margin: 1em;
+    margin-bottom: 5em;
+}
+.card-block{
+    padding: 1em;
 }
 .spanner{
     display: block;

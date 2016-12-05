@@ -5,7 +5,8 @@ function createTeam(name, description, startDate, endDate, callback) {
         name: name,
         description: description,
         beginning: startDate,
-        deadline: endDate
+        deadline: endDate,
+        meetings:[]
     };
     requester.fetch('POST', 'appdata', 'teams', 'kinvey', teamData)
         .then(() => callback(true))
@@ -17,29 +18,18 @@ function loadTeams(callback) {
     requester.fetch('GET', 'appdata', teamsQuery, 'kinvey')
         .then(callback);
 }
-function loadMeetings(teamId,callback) {
-    let responseArray = [];
-     let meetingsQuery = `teams/` + teamId;
-     requester.fetch('GET', 'appdata', meetingsQuery, 'kinvey')
-         .then(function (team) {
-             for(let meeting of team['meetings']){
-                 requester.fetch("GET", 'appdata','meetings/' + meeting,'kinvey')
-                     .then((data) => responseArray.push(data));
-             }
-         });
-    setTimeout(() => callback(responseArray), 1000);
-}
 
 function loadMemberTeams(callback) {
     let responseArray = [];
     requester.fetch("GET", 'user',sessionStorage.getItem('userId') , 'kinvey')
         .then(function (user) {
+            let promiseArray = []
             for(let team of user['member-of']){
-                requester.fetch("GET", 'appdata','teams/' + team,'kinvey')
-                    .then((data) => responseArray.push(data));
+                promiseArray.push(requester.fetch("GET", 'appdata','teams/' + team,'kinvey'));
             }
+            Promise.all(promiseArray).then(callback)
         });
-    setTimeout(() => callback(responseArray), 1000);
+    // setTimeout(() => callback(responseArray), 1000);
 }
 
 function loadTeamDetails(teamId, callback) {
@@ -66,9 +56,10 @@ function deleteTeam(teamId, callback) {
         .catch(() => callback(false))
 }
 
+
+
 export {
     loadTeams,
-    loadMeetings,
     loadTeamDetails,
     loadMemberTeams,
     createTeam,

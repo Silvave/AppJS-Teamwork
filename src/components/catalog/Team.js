@@ -5,19 +5,26 @@ import {Link} from 'react-router';
 export default class Team extends Component{
     render(){
         return(
-            <div className="team-box">
-                <span className="spanner">Name</span>
-                <span className="spanner">{this.props.name}</span>
-                <span className="spanner">Description</span>
-                <p>{this.props.description || "Description is empty"}</p>
-                <span className="spanner">Beginning</span>
-                <p>{this.props.beginning}</p>
-                <span className="spanner">Deadline</span>
-                <p>{this.props.deadline}</p>
-                <span className="spanner">Management</span>
-                <Link to={"/edit/" + this.props.teamId} className="btn btn-default">Edit</Link>
-                <Link to={"/delete/" + this.props.teamId} className="btn btn-default">Delete</Link>
-                <Link to={this.props.teamId + "/users"} className="btn btn-default">Add Members</Link>
+            <div className="col-sm-4" id={this.props.teamId}>
+                <div className="card card-block">
+                    <p className="card-text">Name</p>
+                    <h3 className="card-title">{this.props.name}</h3>
+                    <span className="spanner">Name</span>
+                    <p>{this.props.name}</p>
+                    <span className="spanner">Description</span>
+                    <p>{this.props.description || "Description is empty"}</p>
+                    <span className="spanner">Beginning</span>
+                    <p>{this.props.beginning}</p>
+                    <span className="spanner">Deadline</span>
+                    <p>{this.props.deadline}</p>
+                    <span className="spanner">Management</span>
+                    <Link to={"/edit/" + this.props.teamId} className="btn btn-primary">Edit</Link>
+                    <Link to={this.props.teamId + "/users"} className="btn btn-primary">Add Members</Link>
+                    <Link to={"/delete/" + this.props.teamId} className="btn btn-danger">Delete</Link>
+                    <span className="spanner">Meetings</span>
+                    <Link to={'/meeting/'+ this.props.teamId + '/create' } className="btn btn-success">Create Meeting</Link>
+                    <Link to={'/meeting/'+ this.props.teamId + '/edit' } className="btn btn-success">Edit Meetings</Link>
+                </div>
             </div>
         )
     }
