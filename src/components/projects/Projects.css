@@ -29,11 +29,7 @@ p{
 .spanner:hover{
     transition:pink .2s ease-out, background .4s ease-in;
 }
-.btn{
-    border: 1px black solid;
-    margin-left: 1em;
-    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
-}
+
 .card-title{
     text-align: center;
 }
