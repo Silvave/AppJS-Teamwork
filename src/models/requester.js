@@ -1,5 +1,6 @@
 //This function main work is to communicate with the Kinvey DB
 import $ from 'jquery';
+import toastr from 'toastr'
 
 const kinveyUrl = 'https://baas.kinvey.com/';
 const appKey = 'kid_B1a7PGeQg';
@@ -30,8 +31,32 @@ export function fetch(method, module, url, auth, data) {
         method: method,
         url: hostUrl,
         headers: headers,
-        data: JSON.stringify(data)
+        data: JSON.stringify(data),
+        error: displayError
     };
 
     return $.ajax(request);
+}
+
+// Global Ajax error method
+function displayError(err) {
+    let errMsg = JSON.stringify(err);
+    
+    if (err.readyState === 0)
+        errMsg = "Cannot connect due to network error.";
+
+    if (err.responseJSON &&
+        err.responseJSON.description)
+        errMsg = err.responseJSON.description;
+    showError(errMsg);
+}
+
+$(document).on({
+    ajaxStart: function(){toastr.info('Loading', {timeOut: 0})},
+    ajaxStop: function(){toastr.clear()}
+});
+
+
+function showError(errMsg) {
+    toastr.error(errMsg);
 }

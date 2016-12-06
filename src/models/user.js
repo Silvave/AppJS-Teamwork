@@ -21,7 +21,7 @@ function login(username, password, callback) {
         .catch((err) => callback(false))
 }
 
-function register(username, password, callback) {
+function register(username, password, callback, errorCallback) {
     let userData = {
         username: username,
         password: password,
@@ -33,6 +33,7 @@ function register(username, password, callback) {
             saveUserAuth(response);
             callback(true);
         })
+        .catch(errorCallback)
 }
 
 function addUserToTeam(userId, teamId, callback) {
