@@ -19,15 +19,19 @@ export default class AboutPage extends Component {
         };
         //Bind functions with parent class
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
     }
     //OnSubmit Event for the form - returns the data from the form
+    onChangeHandler(ev){
+        ev.preventDefault();
+        let newState = [];
+        newState[ev.target.name] = ev.target.value;
+        this.setState(newState);
+    }
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        //use this for prevent form to be submitted more than once
-
-        addNewMessage(this.props.userName, this.props.userEmail, this.props.subject, this.props.message);
-
+        addNewMessage(this.state.userName, this.state.userEmail, this.state.subject, this.state.message);
     }
 
     //the callback for the promise
@@ -35,10 +39,11 @@ export default class AboutPage extends Component {
         return (
             <table>
                 <tr><td><ContactForm
-                    userName={this.props.userName}
-                    userEmail={this.props.userEmail}
-                    subject={this.props.subject}
-                    message={this.props.message}
+                    userName={this.state.userName}
+                    userEmail={this.state.userEmail}
+                    subject={this.state.subject}
+                    message={this.state.message}
+                    onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                 /></td><td><Map/></td><td className="media"><LinksSocialMedia/></td></tr>
             </table>

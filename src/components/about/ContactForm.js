@@ -16,6 +16,7 @@ export default  class ContactForm extends Component {
                         type="text"
                         name="userName"
                         value={this.props.userName}
+                        onChange={this.props.onChange}
                     />
                     <label className="PersonEmailL">
                         Your email:
@@ -25,6 +26,7 @@ export default  class ContactForm extends Component {
                         type="text"
                         name="userEmail"
                         value={this.props.userEmail}
+                        onChange={this.props.onChange}
                     />
                     <label className="SubjectL">
                         Subject:
@@ -34,6 +36,7 @@ export default  class ContactForm extends Component {
                         type="text"
                         name="subject"
                         value={this.props.subject}
+                        onChange={this.props.onChange}
                     />
                     <label className="MessageL">
                         Your message:
@@ -43,6 +46,7 @@ export default  class ContactForm extends Component {
                         type="text"
                         name="message"
                         value={this.props.message}
+                        onChange={this.props.onChange}
                     />
                     <input type="submit" value="Submit Form"/>
                 </form>
