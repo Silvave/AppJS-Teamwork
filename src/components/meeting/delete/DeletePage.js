@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import EditForm from './EditForm';
-import {loadMeetings,editMeeting,loadMeetingDetails} from '../../../models/meeting';
-//import observer from '../../models/observer';
+import DeleteForm from './DeleteForm';
+import {loadMeetings, deleteMeeting,loadMeetingDetails} from '../../../models/meeting';
+import toastr from 'toastr';
 
-
-export default class EditPage extends Component {
+export default class DeletePage extends Component {
     constructor(props) {
         //Get props from the parent
         super(props);
@@ -12,15 +11,16 @@ export default class EditPage extends Component {
         this.state = {
             topic: '',
             time: '',
-            date:'',
-            inputDisabled: true
+            date: '',
         };
         //Bind functions with parent class
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.onEditSuccess = this.onEditSuccess.bind(this);
+        this.onDeleteSuccess = this.onDeleteSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
-        // this.redirect = this.redirect.bind(this);
+        this.redirectToCatalog = this.redirectToCatalog.bind(this);
+
+        this.loadMeetings = this.loadMeetings.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +29,7 @@ export default class EditPage extends Component {
 
     onLoadSuccess(response) {
         console.log(response)
+        toastr.warning('Warning, you are about to delete this Meeting');
         this.setState({
             topic: response.topic,
             time: response.time,
@@ -42,62 +43,57 @@ export default class EditPage extends Component {
         ev.preventDefault();
         let newState = {};
         newState[ev.target.name] = ev.target.value;
-        if (ev.target.name === "topic") {
-            if (ev.target.value.length < 3) {
-                newState.inputDisabled = true;
-            }
-            else {
-                newState.inputDisabled = false;
-            }
-        }
         this.setState(newState);
     }
 
     //OnSubmit Event for the form - returns the data from the form
     onSubmitHandler(ev) {
+
         //Prevent refreshing the page
         ev.preventDefault();
-        console.log(this.state)
-        if(this.state.topic.length < 4){
-            alert('A topic for a meeting must be at least 3 characters long')
-        }
-        else{
-            editMeeting(
-                this.props.params.meetingId,
-                this.state.topic,
-                this.state.time,
-                this.state.date,
-                this.onEditSuccess)
-        }
+            deleteMeeting(this.props.params.meetingId,this.props.params.teamId,this.onDeleteSuccess)
+
     }
 
     //the callback for the promise
-    onEditSuccess(result) {
-        this.context.router.push('/projects');
-    }
+    onDeleteSuccess(result) {
+        if(result){
+            toastr.success('Team was successfully deleted');
+            this.context.router.push('/projects');
+        }
+        else{
+            toastr.error('Error occurred when trying to delete this team');
+            this.context.router.push('/projects');
+        }
 
-    redirect(){
+    }
+    //Redirect without ajax call on Cancel form
+    redirectToCatalog(ev){
+        ev.preventDefault();//prevent form submittion(delete team)
+        loadMeetings(this.loadMeetings);
+    }
+    loadMeetings(){
         this.context.router.push('/projects');
     }
 
     render() {
         return (
             <div>
-                <h1>Edit Meeting</h1>
-                <EditForm
+                <h1>Delete Team Page</h1>
+                <DeleteForm
                     topic={this.state.topic}
                     time={this.state.time}
                     date={this.state.date}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
-                    redirect={this.redirect}
+                    redirect={this.redirectToCatalog}
                 />
             </div>
         )
     }
 }
 //Redirect through the Router - the Router is visible for the class
-EditPage.contextTypes = {
+DeletePage.contextTypes = {
     router: React.PropTypes.object
 };

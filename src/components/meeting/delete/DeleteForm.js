@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default  class CreateForm extends Component {
+export default  class DeleteForm extends Component {
     render() {
         return (
             <form onSubmit={this.props.onSubmit}>
@@ -15,20 +15,21 @@ export default  class CreateForm extends Component {
                         name="topic"
                         value={this.props.topic}
                         onChange={this.props.onChange}
+                        disabled
                     />
                 </div>
                 <div className="form-group">
                     <label>
                         Time
                     </label>
-                    <input
+                    <textarea
                         //the submition of this form will send data to the handler with these props
                         className="form-control"
                         type="time"
                         name="time"
                         value={this.props.time}
                         onChange={this.props.onChange}
-                        required
+                        disabled
                     />
                 </div>
                 <div className="form-group">
@@ -42,14 +43,19 @@ export default  class CreateForm extends Component {
                         name="date"
                         value={this.props.date}
                         onChange={this.props.onChange}
-                        required
+                        disabled
                     />
                 </div>
                 <input
                     type="submit"
-                    value="Create Meeting"
+                    value="Delete Team"
                     className="btn btn-default"
-                    disabled={this.props.inputDisabled}/>
+                    />
+                <input
+                    type="submit"
+                    value="Cancel"
+                    className="btn btn-default"
+                    onClick={this.props.redirect}/>
             </form>
         )
     }

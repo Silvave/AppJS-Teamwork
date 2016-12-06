@@ -24,9 +24,22 @@ export default  class EditForm extends Component {
                     <input
                         //the submition of this form will send data to the handler with these props
                         className="form-control"
-                        type="date"
+                        type="time"
                         name="time"
                         value={this.props.time}
+                        onChange={this.props.onChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>
+                        Date
+                    </label>
+                    <input
+                        //the submition of this form will send data to the handler with these props
+                        className="form-control"
+                        type="date"
+                        name="date"
+                        value={this.props.date}
                         onChange={this.props.onChange}
                     />
                 </div>
