@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Login.css';
+import '../../../../public/forms.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default  class LoginForm extends Component {

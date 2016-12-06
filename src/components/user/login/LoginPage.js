@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 import {login} from '../../../models/user';
 import observer from '../../../models/observer';
 import toastr from 'toastr';
-import './Login.css';
+import '../../../../public/forms.css';
 
 export default class LoginPage extends Component {
     constructor(props) {

@@ -6,7 +6,7 @@ import {Link} from 'react-router';
 import '../node_modules/toastr/build/toastr.min.css';
 import './components/user/login/login-transition.css';
 import toastr from 'toastr';
-import './transition-test.css'
+import './transition-def.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class App extends Component {

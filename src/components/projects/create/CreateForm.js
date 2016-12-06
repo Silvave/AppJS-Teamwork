@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 export default  class CreateForm extends Component {
     render() {
         return (
+        <div id="createTeamForm">
             <form onSubmit={this.props.onSubmit}>
                 <div className="form-group">
                     <label>
@@ -64,6 +65,7 @@ export default  class CreateForm extends Component {
                     className="btn btn-default"
                     disabled={this.props.inputDisabled}/>
             </form>
+        </div>
         )
     }
 }

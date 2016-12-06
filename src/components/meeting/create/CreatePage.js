@@ -59,7 +59,6 @@ export default class CreatePage extends Component {
     render() {
         return (
             <div>
-                <h1>Create Meeting</h1>
                 <CreateForm
                     topic={this.state.topic}
                     time={this.state.time}

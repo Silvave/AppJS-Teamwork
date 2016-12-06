@@ -1,10 +1,12 @@
 import './ContactForm.css';
 import React, {Component} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default  class ContactForm extends Component {
 
     render()    {
         return (
+            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
             <div className="contactForm">
                 <form onSubmit={this.props.onSubmit} id="contactUs" style={{"padding": "0.5em"}}>
                     <legend><h3>Contact us</h3></legend>
@@ -51,6 +53,7 @@ export default  class ContactForm extends Component {
                     <input type="submit" value="Submit"/>
                 </form>
             </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }
