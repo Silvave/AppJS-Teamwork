@@ -36,6 +36,7 @@ export default class AboutPage extends Component {
         addNewMessage(this.state.userName, this.state.userEmail, this.state.subject, this.state.message, this.redirect);
     }
     redirect(){
+        toastr.clear();
         toastr.success('Message send');
         this.context.router.goBack();
     }
@@ -54,7 +55,6 @@ export default class AboutPage extends Component {
             </table>
         )
     }
-
 }
 AboutPage.contextTypes = {
     router: React.PropTypes.object

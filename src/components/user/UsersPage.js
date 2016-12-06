@@ -50,8 +50,10 @@ export default class UsersPage extends Component {
                 username: user.username,
                 'member-of': arr
             };
-            toastr.success(`${user.username} successfully added to this team`);
+            toastr.remove();
+            toastr.success(`${user.username} successfully added to this team`, {timeOut: 4000});
             updateUser(user._id, data, this.reloadUsersPage);
+
         }
     }
 

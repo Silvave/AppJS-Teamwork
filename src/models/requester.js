@@ -51,10 +51,17 @@ function displayError(err) {
     showError(errMsg);
 }
 
-toastr.options.preventDuplicates = true;
+toastr.options = {
+    "preventDuplicates": true,
+    "preventOpenDuplicates": true,
+    "maxOpened": 1
+};
 $(document).on({
-    ajaxStart: function(){toastr.info('Loading', {timeOut: 0, preventDuplicates: true})},
-    ajaxStop: function(){toastr.clear()}
+    ajaxStart: function(){
+        toastr.info('Loading')},
+    ajaxStop: function(){
+        toastr.clear();
+    }
 });
 
 function showError(errMsg) {
