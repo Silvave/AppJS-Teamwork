@@ -34,7 +34,6 @@ export function fetch(method, module, url, auth, data) {
         data: JSON.stringify(data),
         error: displayError
     };
-
     return $.ajax(request);
 }
 
@@ -54,13 +53,14 @@ function displayError(err) {
 toastr.options = {
     "preventDuplicates": true,
     "preventOpenDuplicates": true,
-    "maxOpened": 1
+    "maxOpened": "1",
+    "timeOut": "1000"
 };
 $(document).on({
     ajaxStart: function(){
         toastr.info('Loading')},
     ajaxStop: function(){
-        toastr.clear();
+
     }
 });
 
