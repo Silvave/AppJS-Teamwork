@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import LoginForm from './LoginForm';
 import {login} from '../../../models/user';
 import observer from '../../../models/observer';
-
 import toastr from 'toastr';
 
 export default class LoginPage extends Component {
@@ -42,7 +41,6 @@ export default class LoginPage extends Component {
 
     //the callback for the promise
     onLoginSuccess(result) {
-
         //unlock the form if we have success
         this.setState({
             inputDisabled: false

@@ -41,7 +41,7 @@ export function fetch(method, module, url, auth, data) {
 // Global Ajax error method
 function displayError(err) {
     let errMsg = JSON.stringify(err);
-
+    
     if (err.readyState === 0)
         errMsg = "Cannot connect due to network error.";
 
