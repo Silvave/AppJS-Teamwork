@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
-import {loadMeetings, deleteMeeting,loadMeetingDetails} from '../../../models/meeting';
+import {loadMeetings, deleteMeeting, loadMeetingDetails} from '../../../models/meeting';
 import toastr from 'toastr';
 
 export default class DeletePage extends Component {
@@ -11,14 +11,14 @@ export default class DeletePage extends Component {
         this.state = {
             topic: '',
             time: '',
-            date: '',
+            date: ''
         };
         //Bind functions with parent class
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onDeleteSuccess = this.onDeleteSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
-        this.redirectToCatalog = this.redirectToCatalog.bind(this);
+        this.redirectToMeetings = this.redirectToMeetings.bind(this);
 
         this.loadMeetings = this.loadMeetings.bind(this);
     }
@@ -28,7 +28,6 @@ export default class DeletePage extends Component {
     }
 
     onLoadSuccess(response) {
-        console.log(response)
         toastr.warning('Warning, you are about to delete this Meeting');
         this.setState({
             topic: response.topic,
@@ -51,35 +50,30 @@ export default class DeletePage extends Component {
 
         //Prevent refreshing the page
         ev.preventDefault();
-            deleteMeeting(this.props.params.meetingId,this.props.params.teamId,this.onDeleteSuccess)
+        deleteMeeting(this.props.params.meetingId, this.props.params.teamId, this.onDeleteSuccess)
 
     }
 
     //the callback for the promise
     onDeleteSuccess(result) {
-        if(result){
-            toastr.success('Team was successfully deleted');
-            this.context.router.push('/projects');
-        }
-        else{
-            toastr.error('Error occurred when trying to delete this team');
-            this.context.router.push('/projects');
-        }
+        toastr.success('Team was successfully deleted');
+        this.context.router.push('/projects');
+    }
 
-    }
     //Redirect without ajax call on Cancel form
-    redirectToCatalog(ev){
+    redirectToMeetings(ev) {
         ev.preventDefault();//prevent form submittion(delete team)
-        loadMeetings(this.loadMeetings);
+        loadMeetings(this.props.params.teamId,this.loadMeetings);
     }
-    loadMeetings(){
+
+    loadMeetings() {
         this.context.router.push('/projects');
     }
 
     render() {
         return (
             <div>
-                <h1>Delete Team Page</h1>
+                <h1>Delete Meeting Page</h1>
                 <DeleteForm
                     topic={this.state.topic}
                     time={this.state.time}
@@ -87,7 +81,7 @@ export default class DeletePage extends Component {
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
-                    redirect={this.redirectToCatalog}
+                    redirect={this.redirectToMeetings}
                 />
             </div>
         )

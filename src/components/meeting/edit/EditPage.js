@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import EditForm from './EditForm';
 import {loadMeetings,editMeeting,loadMeetingDetails} from '../../../models/meeting';
+import toastr from 'toastr';
 //import observer from '../../models/observer';
 
 
@@ -57,7 +58,7 @@ export default class EditPage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        console.log(this.state)
+        //console.log(this.state)
         if(this.state.topic.length < 4){
             alert('A topic for a meeting must be at least 3 characters long')
         }
@@ -73,6 +74,7 @@ export default class EditPage extends Component {
 
     //the callback for the promise
     onEditSuccess(result) {
+        toastr.success('Meeting edited');
         this.context.router.push('/projects');
     }
 

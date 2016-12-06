@@ -48,7 +48,7 @@ export default  class DeleteForm extends Component {
                 </div>
                 <input
                     type="submit"
-                    value="Delete Team"
+                    value="Delete Meeting"
                     className="btn btn-default"
                     />
                 <input

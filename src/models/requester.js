@@ -51,11 +51,11 @@ function displayError(err) {
     showError(errMsg);
 }
 
+toastr.options.preventDuplicates = true;
 $(document).on({
-    ajaxStart: function(){toastr.info('Loading', {timeOut: 0})},
+    ajaxStart: function(){toastr.info('Loading', {timeOut: 0, preventDuplicates: true})},
     ajaxStop: function(){toastr.clear()}
 });
-
 
 function showError(errMsg) {
     toastr.error(errMsg);
