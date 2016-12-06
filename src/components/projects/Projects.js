@@ -7,7 +7,7 @@ export default class Team extends Component{
         return(
             <div className="col-sm-4" id={this.props.teamId}>
                 <div className="card card-block">
-                    <p className="card-text">Name</p>
+                    <p className="spanner">Name</p>
                     <h3 className="card-title">{this.props.name}</h3>
                     <span className="spanner">Description</span>
                     <p>{this.props.description || "Description is empty"}</p>
