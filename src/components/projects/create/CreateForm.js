@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default  class CreateForm extends Component {
+export default class CreateForm extends Component {
     render() {
         return (
             <form onSubmit={this.props.onSubmit}>

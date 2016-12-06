@@ -13,6 +13,7 @@ export default class CreatePage extends Component {
         this.state = {
             topic: '',
             time: '',
+            date:'',
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -47,6 +48,7 @@ export default class CreatePage extends Component {
             this.props.location.pathname.split('/')[2]
             ,this.state.topic,
             this.state.time,
+            this.state.date,
             this.onCreateSuccess);
     }
     //the callback for the promise
@@ -61,6 +63,7 @@ export default class CreatePage extends Component {
                 <CreateForm
                     topic={this.state.topic}
                     time={this.state.time}
+                    da={this.state.time}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}

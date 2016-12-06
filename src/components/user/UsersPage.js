@@ -15,6 +15,7 @@ export default class UsersPage extends Component {
         this.addUser = this.addUser.bind(this);
         /*this.deselectUser = this.deselectUser.bind(this);*/
         this.reloadUsersPage = this.reloadUsersPage.bind(this);
+        this.reloadProjectsPage = this.reloadProjectsPage.bind(this);
     }
 
     componentDidMount() {
@@ -58,6 +59,10 @@ export default class UsersPage extends Component {
         loadUsers(this.onLoadSuccess);
     }
 
+    reloadProjectsPage(){
+        this.context.router.goBack()
+    }
+
     //deselectUser(userId){
     //   for(let id in this.usersArr){
     //       if(userId === this.usersArr[id]){
@@ -78,6 +83,11 @@ export default class UsersPage extends Component {
                         //deselectUser={this.deselectUser}
                     />
                 })}
+                <input
+                    type="button"
+                    value="Finished selection"
+                    onClick={() => this.reloadProjectsPage()}
+                />
             </div>
         )
     }

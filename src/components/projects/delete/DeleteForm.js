@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default  class DeleteForm extends Component {
+export default class DeleteForm extends Component {
     render() {
         return (
             <form onSubmit={this.props.onSubmit}>
@@ -14,7 +14,6 @@ export default  class DeleteForm extends Component {
                         type="text"
                         name="name"
                         value={this.props.name}
-                        onChange={this.props.onChange}
                         disabled
                     />
                 </div>
@@ -28,7 +27,6 @@ export default  class DeleteForm extends Component {
                         type="text"
                         name="description"
                         value={this.props.description}
-                        onChange={this.props.onChange}
                         disabled
                     />
                 </div>
@@ -42,7 +40,6 @@ export default  class DeleteForm extends Component {
                         type="date"
                         name="beginning"
                         value={this.props.beginning}
-                        onChange={this.props.onChange}
                         disabled
                     />
                 </div>
@@ -56,7 +53,6 @@ export default  class DeleteForm extends Component {
                         type="date"
                         name="deadline"
                         value={this.props.deadline}
-                        onChange={this.props.onChange}
                         disabled
                     />
                 </div>

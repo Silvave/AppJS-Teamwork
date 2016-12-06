@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Projects.css';
 import {Link} from 'react-router';
 
-export default class Team extends Component{
+export default class Project extends Component{
     render(){
         return(
             <div className="col-sm-4" id={this.props.teamId}>
@@ -22,6 +22,8 @@ export default class Team extends Component{
                     <span className="spanner">Meetings</span>
                     <Link to={'/meeting/'+ this.props.teamId + '/create' } className="btn btn-success">Create Meeting</Link>
                     <Link to={'/meeting/'+ this.props.teamId + '/edit' } className="btn btn-success">Edit Meetings</Link>
+                    <span className="spanner">Files</span>
+                    <Link to={"/files/" + this.props.teamId} className="btn btn-primary">Show</Link>
                 </div>
             </div>
         )

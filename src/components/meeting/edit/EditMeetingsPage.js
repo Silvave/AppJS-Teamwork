@@ -15,7 +15,7 @@ export default class EditMeetingsPage extends Component {
     }
 
     componentDidMount(){
-        loadMeetings((this.props.location.pathname).split('/')[2],this.onLoadSuccess);
+        loadMeetings(this.props.params.teamId,this.onLoadSuccess);
     }
 
     onLoadSuccess(response){
@@ -31,6 +31,7 @@ export default class EditMeetingsPage extends Component {
                 return <Meeting key={i}
                                 topic={el.topic}
                                 time={el.time}
+                                date={el.date}
                                 meetingId={el._id}
                                 teamId={(this.props.location.pathname).split('/')[2]}/>
             })}

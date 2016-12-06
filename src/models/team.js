@@ -36,12 +36,13 @@ function loadTeamDetails(teamId, callback) {
         .then(callback);
 }
 
-function editTeam(teamId, name, description, beginning, deadline, callback) {
+function editTeam(teamId, name, description, beginning, deadline,meetings, callback) {
     let teamData = {
         name: name,
         description: description,
         beginning: beginning,
-        deadline: deadline
+        deadline: deadline,
+        meetings:meetings
     };
 
     requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)

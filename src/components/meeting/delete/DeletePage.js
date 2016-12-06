@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
-import {loadTeamDetails, deleteTeam, loadTeams} from '../../../models/team';
+import {loadMeetings, deleteMeeting,loadMeetingDetails} from '../../../models/meeting';
 import toastr from 'toastr';
 
 export default class DeletePage extends Component {
@@ -9,47 +9,56 @@ export default class DeletePage extends Component {
         super(props);
         //Set default state
         this.state = {
-            name: '',
-            description: '',
-            beginning: '',
-            deadline: ''
+            topic: '',
+            time: '',
+            date: '',
         };
         //Bind functions with parent class
+        this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onDeleteSuccess = this.onDeleteSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
         this.redirectToCatalog = this.redirectToCatalog.bind(this);
 
-        this.loadTeams = this.loadTeams.bind(this);
+        this.loadMeetings = this.loadMeetings.bind(this);
     }
 
     componentDidMount() {
-        loadTeamDetails(this.props.params.teamId, this.onLoadSuccess);
+        loadMeetingDetails(this.props.params.meetingId, this.onLoadSuccess);
     }
 
     onLoadSuccess(response) {
-        toastr.warning('Warning, you are about to delete this team');
+        console.log(response)
+        toastr.warning('Warning, you are about to delete this Meeting');
         this.setState({
-            name: response.name,
-            description: response.description,
-            beginning: response.beginning,
-            deadline: response.deadline,
+            topic: response.topic,
+            time: response.time,
+            date: response.date,
             inputDisabled: false
         });
     }
 
+    //Change state of this.props, binding them with the input fields.value with onChange handler
+    onChangeHandler(ev) {
+        ev.preventDefault();
+        let newState = {};
+        newState[ev.target.name] = ev.target.value;
+        this.setState(newState);
+    }
+
     //OnSubmit Event for the form - returns the data from the form
     onSubmitHandler(ev) {
+
         //Prevent refreshing the page
         ev.preventDefault();
+            deleteMeeting(this.props.params.meetingId,this.props.params.teamId,this.onDeleteSuccess)
 
-        deleteTeam(this.props.params.teamId,this.onDeleteSuccess)
     }
 
     //the callback for the promise
     onDeleteSuccess(result) {
         if(result){
-            toastr.success('Project was successfully deleted');
+            toastr.success('Team was successfully deleted');
             this.context.router.push('/projects');
         }
         else{
@@ -61,9 +70,9 @@ export default class DeletePage extends Component {
     //Redirect without ajax call on Cancel form
     redirectToCatalog(ev){
         ev.preventDefault();//prevent form submittion(delete team)
-        loadTeams(this.loadTeams);
+        loadMeetings(this.loadMeetings);
     }
-    loadTeams(){
+    loadMeetings(){
         this.context.router.push('/projects');
     }
 
@@ -72,10 +81,10 @@ export default class DeletePage extends Component {
             <div>
                 <h1>Delete Team Page</h1>
                 <DeleteForm
-                    name={this.state.name}
-                    description={this.state.description}
-                    beginning={this.state.beginning}
-                    deadline={this.state.deadline}
+                    topic={this.state.topic}
+                    time={this.state.time}
+                    date={this.state.date}
+                    onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
                     redirect={this.redirectToCatalog}

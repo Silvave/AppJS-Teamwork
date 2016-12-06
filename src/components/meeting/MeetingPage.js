@@ -27,7 +27,7 @@ export default class MemberProjectsPage extends Component {
 
         if(this.state.meetings.length > 0){
             content =  this.state.meetings.map((el,i) => {
-                return <Meeting key={i} topic={el.topic} time={el.time} meetingId={el._id}/>
+                return <Meeting key={i} topic={el.topic} time={el.time} date={el.date} meetingId={el._id}/>
             })}
         return (
             <div>

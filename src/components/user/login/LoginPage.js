@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import LoginForm from './LoginForm';
 import {login} from '../../../models/user';
 import observer from '../../../models/observer';
-
 import toastr from 'toastr';
 
 export default class LoginPage extends Component {

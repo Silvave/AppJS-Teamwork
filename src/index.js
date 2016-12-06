@@ -11,6 +11,7 @@ import Login from './components/user/login/LoginPage';
 import Home from './components/home/HomePage';
 import Create from './components/projects/create/CreatePage';
 import Edit from './components/projects/edit/EditPage';
+import Files from './components/projects/files/FilesPage';
 import Delete from './components/projects/delete/DeletePage';
 import User from './components/user/UsersPage';
 import MemberPage from './components/member-projects/MemberProjectPage'
@@ -36,6 +37,7 @@ ReactDOM.render(
             <Route path="meeting/:teamId/edit" component={EditMeetings}/>
             <Route path="meeting/:teamId/edit/:meetingId" component={EditMeeting}/>
             <Route path="edit/:teamId" component={Edit}/>
+            <Route path="filesc/:teamId" component={Files}/>
             <Route path="delete/:teamId" component={Delete}/>
             <Route path=":teamId/users" component={User}/>
         </Route>

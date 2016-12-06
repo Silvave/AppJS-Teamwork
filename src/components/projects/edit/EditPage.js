@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import EditForm from './EditForm';
 import {loadTeamDetails, editTeam, loadTeams} from '../../../models/team';
 import toastr from 'toastr';
-//import observer from '../../models/observer';
 
 
 export default class EditPage extends Component {
@@ -62,7 +61,7 @@ export default class EditPage extends Component {
         //Prevent refreshing the page
         ev.preventDefault();
         if(this.state.name.length < 4){
-            alert('Team name must be at least 3 chars long')
+            alert('Project name must be at least 3 chars long')
         }
         else{
             editTeam(
@@ -78,7 +77,7 @@ export default class EditPage extends Component {
     //the callback for the promise
     onEditSuccess(result) {
         if(result){
-            toastr.success('Team was successfully edited');
+            toastr.success('Project was successfully edited');
             this.context.router.push('/projects');
         }
         else{

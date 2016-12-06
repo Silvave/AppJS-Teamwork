@@ -48,7 +48,7 @@ export default  class ContactForm extends Component {
                         value={this.props.message}
                         onChange={this.props.onChange}
                     />
-                    <input type="submit" value="Submit Form"/>
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
         )

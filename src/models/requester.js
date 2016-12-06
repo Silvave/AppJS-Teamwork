@@ -45,12 +45,9 @@ function displayError(err) {
     if (err.readyState === 0)
         errMsg = "Cannot connect due to network error.";
 
-    if (err.responseJSON &&
-        err.responseJSON.description)
+    if (err.responseJSON && err.responseJSON.description)
         errMsg = err.responseJSON.description;
-    showError(errMsg);
-}
 
-function showError(errMsg) {
+    // Shows error via toastr pop up
     toastr.error(errMsg);
 }

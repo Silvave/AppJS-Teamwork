@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import CreateForm from './CreateForm';
 import {createTeam} from '../../../models/team';
 import toastr from 'toastr';
-// import {addUserToTeam} from '../../../models/user'
-// import observer from '../../models/observer';
 
 
 export default class CreatePage extends Component {
@@ -53,7 +51,7 @@ export default class CreatePage extends Component {
     //the callback for the promise
     onCreateSuccess(result){
         if(result){
-            toastr.success('Team created successfully');
+            toastr.success('Project created successfully');
             this.context.router.push('/projects');
         }
         else{

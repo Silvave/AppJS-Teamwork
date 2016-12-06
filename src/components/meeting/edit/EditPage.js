@@ -57,7 +57,7 @@ export default class EditPage extends Component {
         ev.preventDefault();
         console.log(this.state)
         {/*if(this.state.name.length < 4){*/}
-            {/*alert('Team name must be at least 3 chars long')*/}
+            {/*alert('Project name must be at least 3 chars long')*/}
         {/*}*/}
         {/*else{*/}
             {/*editTeam(*/}
