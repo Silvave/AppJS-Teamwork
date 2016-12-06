@@ -63,7 +63,7 @@ export default class DeletePage extends Component {
     //Redirect without ajax call on Cancel form
     redirectToMeetings(ev) {
         ev.preventDefault();//prevent form submittion(delete team)
-        loadMeetings(this.loadMeetings);
+        loadMeetings(this.props.params.teamId,this.loadMeetings);
     }
 
     loadMeetings() {
