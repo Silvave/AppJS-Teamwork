@@ -19,6 +19,7 @@ import Meeting from './components/meeting/MeetingPage'
 import CreateMeeting from './components/meeting/create/CreatePage'
 import EditMeetings from './components/meeting/edit/EditMeetingsPage'
 import EditMeeting from './components/meeting/edit/EditPage'
+import DeleteMeeting from './components/meeting/delete/DeletePage'
 
 
 //Manage routes
@@ -36,6 +37,7 @@ ReactDOM.render(
             <Route path="meeting/:teamId/create" component={CreateMeeting}/>
             <Route path="meeting/:teamId/edit" component={EditMeetings}/>
             <Route path="meeting/:teamId/edit/:meetingId" component={EditMeeting}/>
+            <Route path="meeting/:teamId/delete/:meetingId" component={DeleteMeeting}/>
             <Route path="edit/:teamId" component={Edit}/>
             <Route path="filesc/:teamId" component={Files}/>
             <Route path="delete/:teamId" component={Delete}/>

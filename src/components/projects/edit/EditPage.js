@@ -14,6 +14,7 @@ export default class EditPage extends Component {
             description: '',
             beginning: '',
             deadline: '',
+            meetings:[],
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -36,6 +37,7 @@ export default class EditPage extends Component {
             description: response.description,
             beginning: response.beginning,
             deadline: response.deadline,
+            meetings: response.meetings,
             inputDisabled: false
         });
     }
@@ -70,6 +72,7 @@ export default class EditPage extends Component {
                 this.state.description,
                 this.state.beginning,
                 this.state.deadline,
+                this.state.meetings,
                 this.onEditSuccess)
         }
     }

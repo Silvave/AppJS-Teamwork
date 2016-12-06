@@ -41,7 +41,6 @@ export default class LoginPage extends Component {
 
     //the callback for the promise
     onLoginSuccess(result) {
-
         //unlock the form if we have success
         this.setState({
             inputDisabled: false
