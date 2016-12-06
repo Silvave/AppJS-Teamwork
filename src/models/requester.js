@@ -30,8 +30,26 @@ export function fetch(method, module, url, auth, data) {
         method: method,
         url: hostUrl,
         headers: headers,
-        data: JSON.stringify(data)
+        data: JSON.stringify(data),
+        error: displayError
     };
 
     return $.ajax(request);
+}
+
+// Global Ajax error method
+function displayError(err) {
+    let errMsg = JSON.stringify(err);
+
+    if (err.readyState === 0)
+        errMsg = "Cannot connect due to network error.";
+
+    if (err.responseJSON &&
+        err.responseJSON.description)
+        errMsg = err.responseJSON.description;
+    showError(errMsg);
+}
+
+function showError(errMsg) {
+    console.log("Error: " + errMsg);
 }
