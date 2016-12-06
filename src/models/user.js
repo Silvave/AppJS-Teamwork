@@ -37,7 +37,7 @@ function register(username, password, callback) {
 
 function addUserToTeam(userId, teamId, callback) {
     let user = requester.fetch("GET", 'user', '?query={"_id":"' + userId + '"}');
-    console.log(user);
+    //console.log(user);
 
 
     // let userData = {

@@ -3,6 +3,8 @@ import Header from './components/common/Header';
 import observer from './models/observer';
 import {logout} from './models/user'
 import {Link} from 'react-router';
+import '../node_modules/toastr/build/toastr.min.css';
+import toastr from 'toastr';
 
 
 export default class App extends Component {
@@ -43,6 +45,7 @@ export default class App extends Component {
     }
 
     onLogout() {
+        toastr.success('You have been successfully logged out');
         this.checkUserCredentials();
     }
 

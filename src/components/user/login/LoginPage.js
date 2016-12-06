@@ -3,6 +3,7 @@ import LoginForm from './LoginForm';
 import {login} from '../../../models/user';
 import observer from '../../../models/observer';
 
+import toastr from 'toastr';
 
 export default class LoginPage extends Component {
     constructor(props) {
@@ -41,16 +42,22 @@ export default class LoginPage extends Component {
 
     //the callback for the promise
     onLoginSuccess(result) {
+
         //unlock the form if we have success
         this.setState({
             inputDisabled: false
         });
         if (result) {
+            toastr.success('Login success');
             //Use the observer here to update the session and reload links when login/register
             observer.onSessionUpdate();
             //redirect user to 'Home' when login is success
             this.context.router.push('/');
         }
+        else{
+            toastr.error('Incorrect username or password');
+        }
+
     }
 
     render() {

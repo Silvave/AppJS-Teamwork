@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CreateForm from './CreateForm';
 import {createTeam} from '../../../models/team';
+import toastr from 'toastr';
 // import {addUserToTeam} from '../../../models/user'
 // import observer from '../../models/observer';
 
@@ -51,8 +52,13 @@ export default class CreatePage extends Component {
     }
     //the callback for the promise
     onCreateSuccess(result){
-        alert('success');
-        this.context.router.push('/projects');
+        if(result){
+            toastr.success('Team created successfully');
+            this.context.router.push('/projects');
+        }
+        else{
+            toastr.error('Error');
+        }
     }
     render() {
         return (
