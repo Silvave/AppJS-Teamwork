@@ -15,10 +15,12 @@ export default class Team extends Component{
                     <p>{this.props.beginning}</p>
                     <span className="spanner">Deadline</span>
                     <p>{this.props.deadline}</p>
-                    <span className="spanner">Management</span>
+                    <span className="spanner">Team Management</span>
                     <Link to={"/edit/" + this.props.teamId} className="btn btn-primary">Edit</Link>
-                    <Link to={this.props.teamId + "/users"} className="btn btn-primary">Add Members</Link>
                     <Link to={"/delete/" + this.props.teamId} className="btn btn-danger">Delete</Link>
+                    <span className="spanner">User Management</span>
+                    <Link to={this.props.teamId + "/users"} className="btn btn-primary">Add Members</Link>
+                    <Link to={this.props.teamId + "/users/remove"} className="btn btn-primary">Remove Members</Link>
                     <span className="spanner">Meetings</span>
                     <Link to={'/meeting/'+ this.props.teamId + '/create' } className="btn btn-success">Create Meeting</Link>
                     <Link to={'/meeting/'+ this.props.teamId + '/edit' } className="btn btn-success">Edit Meetings</Link>

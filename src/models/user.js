@@ -85,6 +85,32 @@ function updateUser(userId, data, callback) {
         .then(callback)
         .catch((err) => console.log(err));
 }
+function removeUserFromTeam(userId, teamId, callback) {
+    console.log(userId,teamId)
+    // requester.fetch('PUT', 'user', userId, 'master', data)
+    //     .then(callback)
+    //     .catch((err) => console.log(err));
+}
+function loadUsersInTeam(teamId,callback) {
+
+    requester.fetch('GET', 'user', '', 'kinvey')
+        .then(function (users) {
+            let promiseArray=[];
+            for(let user of users){
+                for(let team of user['member-of']){
+                    if(team === teamId){
+                        requester.fetch('GET', 'user', user._id, 'kinvey')
+                            .then(function (response) {
+                                promiseArray.push(response)
+
+                            })
+                    }
+                }
+            }
+            (setTimeout(() => callback(promiseArray),1000))
+        })
+
+}
 
 export {
     addUserToTeam,
@@ -94,5 +120,7 @@ export {
     loadUsers,
     getUserById,
     pushUsersArrayToTheTeam,
-    updateUser
+    updateUser,
+    removeUserFromTeam,
+    loadUsersInTeam
 }
