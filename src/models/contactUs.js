@@ -1,7 +1,7 @@
 import * as requester from './requester';
 
 function addNewMessage(username, email, subject, message) {
-    console.log('tuk');
+    alert("tuk");
     let messageData = {
         userName: username,
         userEmail: email,
@@ -9,7 +9,7 @@ function addNewMessage(username, email, subject, message) {
         message: message
     };
 
-    requester.fetch('POST', 'appdata', 'contactUsEmails', 'basic', messageData)
+    requester.fetch('POST', 'appdata', 'contactUsEmails', 'master', messageData)
         .then(function (data) {
             console.log(data);
         })
@@ -17,3 +17,5 @@ function addNewMessage(username, email, subject, message) {
             console.log(error);
         })
 }
+
+export {addNewMessage}

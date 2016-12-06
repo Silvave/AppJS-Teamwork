@@ -3,7 +3,7 @@ import './AboutPage.css';
 import Map from './Map';
 import ContactForm from './ContactForm';
 import LinksSocialMedia from './LinksSocialMedia';
-import addNewMessage from '../../models/contactUs';
+import {addNewMessage} from '../../models/contactUs';
 
 
 export default class AboutPage extends Component {
@@ -25,12 +25,9 @@ export default class AboutPage extends Component {
         //Prevent refreshing the page
         ev.preventDefault();
         //use this for prevent form to be submitted more than once
-        this.setState({
-            inputDisabled: true
-        });
-        addNewMessage(this.state.userName, this.state.userEmail, this.state.subject, this.state.message);
 
-        //send data and callback function for the ajax request
+        addNewMessage(this.props.userName, this.props.userEmail, this.props.subject, this.props.message);
+
     }
 
     //the callback for the promise
@@ -38,12 +35,11 @@ export default class AboutPage extends Component {
         return (
             <table>
                 <tr><td><ContactForm
-                    userName={this.state.userName}
-                    userEmail={this.state.userEmail}
-                    subject={this.state.subject}
-                    message={this.state.message}
+                    userName={this.props.userName}
+                    userEmail={this.props.userEmail}
+                    subject={this.props.subject}
+                    message={this.props.message}
                     onSubmit={this.onSubmitHandler}
-                    inputDisabled={this.state.inputDisabled}
                 /></td><td><Map/></td><td className="media"><LinksSocialMedia/></td></tr>
             </table>
         )

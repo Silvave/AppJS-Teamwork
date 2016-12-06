@@ -2,10 +2,11 @@ import './ContactForm.css';
 import React, {Component} from 'react';
 
 export default  class ContactForm extends Component {
+
     render()    {
         return (
             <div className="contactForm">
-                <form id="contactUs" style={{"padding": "0.5em"}}>
+                <form onSubmit={this.props.onSubmit} id="contactUs" style={{"padding": "0.5em"}}>
                     <legend><h3>Contact us</h3></legend>
                     <label className="PersonNameL">
                         Your name:
@@ -43,7 +44,7 @@ export default  class ContactForm extends Component {
                         name="message"
                         value={this.props.message}
                     />
-                    <button onSubmit={this.props.onSubmit}><b>Submit</b></button>
+                    <input type="submit" value="Submit Form"/>
                 </form>
             </div>
         )
