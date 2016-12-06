@@ -3,6 +3,7 @@ import CreateForm from './CreateForm';
  import {createMeeting} from '../../../models/meeting';
 // import {addUserToTeam} from '../../../models/user'
 //import observer from '../../models/observer';
+import toastr from 'toastr';
 
 
 export default class CreatePage extends Component {
@@ -53,6 +54,8 @@ export default class CreatePage extends Component {
     }
     //the callback for the promise
     onCreateSuccess(result){
+        toastr.success('Meeting created');
+        this.context.router.goBack();
         // alert('success');
         // this.context.router.push('/projects');
     }
