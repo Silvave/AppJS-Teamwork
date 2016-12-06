@@ -1,25 +1,56 @@
-import React from 'react';
 import './ContactForm.css';
+import React, {Component} from 'react';
 
-let ContactForm = React.createClass({
-    render: function () {
+export default  class ContactForm extends Component {
+
+    render()    {
         return (
             <div className="contactForm">
-                <fieldset style={{"padding": "0.5em"}}>
+                <form onSubmit={this.props.onSubmit} id="contactUs" style={{"padding": "0.5em"}}>
                     <legend><h3>Contact us</h3></legend>
-                    <label className="PersonNameL">Your name:</label><br></br>
-                    <input className="PersonNameI" type="text"/><br></br>
-                    <label className="PersonEmailL">Your email:</label><br></br>
-                    <input className="PersonEmailI" type="text"/><br></br>
-                    <label className="SubjectL">Subject:</label><br></br>
-                    <input className="SubjectI" type="text"/><br></br>
-                    <label className="MessageL">Your message:</label><br></br>
-                    <textarea className="MessageI" type="text"/><br></br>
-                    <button onClick={this.handleClick}><b>Submit</b></button>
-                </fieldset>
+                    <label className="PersonNameL">
+                        Your name:
+                    </label>
+                    <input
+                        className="PersonNameI"
+                        type="text"
+                        name="userName"
+                        value={this.props.userName}
+                        onChange={this.props.onChange}
+                    />
+                    <label className="PersonEmailL">
+                        Your email:
+                    </label>
+                    <input
+                        className="PersonEmailI"
+                        type="text"
+                        name="userEmail"
+                        value={this.props.userEmail}
+                        onChange={this.props.onChange}
+                    />
+                    <label className="SubjectL">
+                        Subject:
+                    </label>
+                    <input
+                        className="SubjectI"
+                        type="text"
+                        name="subject"
+                        value={this.props.subject}
+                        onChange={this.props.onChange}
+                    />
+                    <label className="MessageL">
+                        Your message:
+                    </label>
+                    <textarea
+                        className="MessageI"
+                        type="text"
+                        name="message"
+                        value={this.props.message}
+                        onChange={this.props.onChange}
+                    />
+                    <input type="submit" value="Submit Form"/>
+                </form>
             </div>
         )
     }
-});
-
-export default ContactForm;
+}
