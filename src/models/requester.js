@@ -51,6 +51,12 @@ function displayError(err) {
     showError(errMsg);
 }
 
+$(document).on({
+    ajaxStart: function(){toastr.info('Loading', {timeOut: 0})},
+    ajaxStop: function(){toastr.clear()}
+});
+
+
 function showError(errMsg) {
     toastr.error(errMsg);
 }
