@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import EditForm from './EditForm';
-import {loadTeamDetails, editTeam} from '../../../models/team';
+import {loadTeamDetails, editTeam, loadTeams} from '../../../models/team';
+import toastr from 'toastr';
 //import observer from '../../models/observer';
 
 
@@ -14,6 +15,7 @@ export default class EditPage extends Component {
             description: '',
             beginning: '',
             deadline: '',
+            meetings:[],
             inputDisabled: true
         };
         //Bind functions with parent class
@@ -22,6 +24,7 @@ export default class EditPage extends Component {
         this.onEditSuccess = this.onEditSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
         this.redirect = this.redirect.bind(this);
+        this.loadTeams = this.loadTeams.bind(this);
     }
 
     componentDidMount() {
@@ -29,11 +32,13 @@ export default class EditPage extends Component {
     }
 
     onLoadSuccess(response) {
+        toastr.warning('Warning, you are about to edit this team');
         this.setState({
             name: response.name,
             description: response.description,
             beginning: response.beginning,
             deadline: response.deadline,
+            meetings: response.meetings,
             inputDisabled: false
         });
     }
@@ -68,16 +73,28 @@ export default class EditPage extends Component {
                 this.state.description,
                 this.state.beginning,
                 this.state.deadline,
+                this.state.meetings,
                 this.onEditSuccess)
         }
     }
 
     //the callback for the promise
     onEditSuccess(result) {
-        this.context.router.push('/projects');
+        if(result){
+            toastr.success('Team was successfully edited');
+            this.context.router.push('/projects');
+        }
+        else{
+            toastr.error('Error occurred when trying to edit this team')
+            this.context.router.push('/projects');
+        }
+        
     }
-
-    redirect(){
+    redirect(ev){
+        ev.preventDefault();//prevent form submittion(delete team)
+        loadTeams(this.loadTeams);
+    }
+    loadTeams(){
         this.context.router.push('/projects');
     }
 

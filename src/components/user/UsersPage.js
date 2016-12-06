@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import User from './User';
 import {loadUsers, getUserById, updateUser} from '../../models/user';
+import toastr from 'toastr';
 //This will be controller-view component
-
 
 export default class UsersPage extends Component {
     constructor(props) {
@@ -15,6 +15,7 @@ export default class UsersPage extends Component {
         this.addUser = this.addUser.bind(this);
         /*this.deselectUser = this.deselectUser.bind(this);*/
         this.reloadUsersPage = this.reloadUsersPage.bind(this);
+        this.reloadProjectsPage = this.reloadProjectsPage.bind(this);
     }
 
     componentDidMount() {
@@ -25,14 +26,13 @@ export default class UsersPage extends Component {
         let responseArr = [];
         let teamId = this.context.router.params.teamId;
         let userId = sessionStorage.getItem('userId');
-
         for (var i = 0; i < response.length; i++) {
             let user = response[i];
             if (!user['member-of'].includes(teamId)
                 && user._id !== userId) {
                 responseArr.push(user);
             }
-            this.setState({users: responseArr})
+            this.setState({users: responseArr});
         }
     }
 
@@ -50,13 +50,17 @@ export default class UsersPage extends Component {
                 username: user.username,
                 'member-of': arr
             };
+            toastr.success(`${user.username} successfully added to this team`);
             updateUser(user._id, data, this.reloadUsersPage);
         }
     }
 
     reloadUsersPage() {
-        alert('Are you sure you want to add this user to this team');
         loadUsers(this.onLoadSuccess);
+    }
+
+    reloadProjectsPage(){
+        this.context.router.goBack()
     }
 
     //deselectUser(userId){
@@ -67,11 +71,10 @@ export default class UsersPage extends Component {
     //  }
     // }
 
-
     render() {
         return (
             <div>
-                <h1>Users Page</h1>
+                <h1>Add users to your team</h1>
                 {this.state.users.map((el, i) => {
                     return <User key={i}
                                  username={el.username}
@@ -80,6 +83,11 @@ export default class UsersPage extends Component {
                         //deselectUser={this.deselectUser}
                     />
                 })}
+                <input
+                    type="button"
+                    value="Finished selection"
+                    onClick={() => this.reloadProjectsPage()}
+                />
             </div>
         )
     }

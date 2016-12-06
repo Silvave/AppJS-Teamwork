@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import EditForm from './EditForm';
-import {loadMeetings} from '../../../models/meeting';
+import {loadMeetings,editMeeting,loadMeetingDetails} from '../../../models/meeting';
 //import observer from '../../models/observer';
 
 
@@ -12,25 +12,27 @@ export default class EditPage extends Component {
         this.state = {
             topic: '',
             time: '',
+            date:'',
             inputDisabled: true
         };
         //Bind functions with parent class
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        // this.onEditSuccess = this.onEditSuccess.bind(this);
+        this.onEditSuccess = this.onEditSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
         // this.redirect = this.redirect.bind(this);
     }
 
     componentDidMount() {
-        loadMeetings(this.props.params.teamId, this.onLoadSuccess);
+        loadMeetingDetails(this.props.params.meetingId, this.onLoadSuccess);
     }
 
     onLoadSuccess(response) {
         console.log(response)
         this.setState({
-            topic: response[0].topic,
-            time: response[0].time,
+            topic: response.topic,
+            time: response.time,
+            date: response.date,
             inputDisabled: false
         });
     }
@@ -56,27 +58,26 @@ export default class EditPage extends Component {
         //Prevent refreshing the page
         ev.preventDefault();
         console.log(this.state)
-        {/*if(this.state.name.length < 4){*/}
-            {/*alert('Team name must be at least 3 chars long')*/}
-        {/*}*/}
-        {/*else{*/}
-            {/*editTeam(*/}
-                {/*this.props.params.teamId,*/}
-                {/*this.state.name,*/}
-                {/*this.state.description,*/}
-    //             this.state.beginning,
-    //             this.state.deadline,
-    //             this.onEditSuccess)
-    //     }
-    // }
-    //
-    // //the callback for the promise
-    // onEditSuccess(result) {
-    //     this.context.router.push('/projects');
-    // }
-    //
-    // redirect(){
-    //     this.context.router.push('/projects');
+        if(this.state.topic.length < 4){
+            alert('A topic for a meeting must be at least 3 characters long')
+        }
+        else{
+            editMeeting(
+                this.props.params.meetingId,
+                this.state.topic,
+                this.state.time,
+                this.state.date,
+                this.onEditSuccess)
+        }
+    }
+
+    //the callback for the promise
+    onEditSuccess(result) {
+        this.context.router.push('/projects');
+    }
+
+    redirect(){
+        this.context.router.push('/projects');
     }
 
     render() {
@@ -86,6 +87,7 @@ export default class EditPage extends Component {
                 <EditForm
                     topic={this.state.topic}
                     time={this.state.time}
+                    date={this.state.date}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}

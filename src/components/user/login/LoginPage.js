@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import LoginForm from './LoginForm';
 import {login} from '../../../models/user';
 import observer from '../../../models/observer';
-
+import toastr from 'toastr';
 
 export default class LoginPage extends Component {
     constructor(props) {
@@ -46,6 +46,7 @@ export default class LoginPage extends Component {
             inputDisabled: false
         });
         if (result) {
+            toastr.success('Login success');
             //Use the observer here to update the session and reload links when login/register
             observer.onSessionUpdate();
             //redirect user to 'Home' when login is success
