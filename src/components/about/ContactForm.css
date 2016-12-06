@@ -31,7 +31,7 @@ legend {
     border-bottom:1px solid lightskyblue;
 }
 
-div.contactForm {
+form#contactUs {
     border: 2px solid lightskyblue;
     background-color: #eee;
     border-radius: 5px;
