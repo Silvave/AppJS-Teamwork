@@ -69,8 +69,8 @@ function deleteMeeting(meetingId,teamId, callback) {
             let teamData = {
                 name: team.name,
                 description: team.description,
-                beginning: team.startDate,
-                deadline: team.endDate,
+                beginning: team.beginning,
+                deadline: team.deadline,
                 meetings:meetings
             }
             requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
