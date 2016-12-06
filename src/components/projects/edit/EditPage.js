@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import EditForm from './EditForm';
 import {loadTeamDetails, editTeam, loadTeams} from '../../../models/team';
+import toastr from 'toastr';
 //import observer from '../../models/observer';
 
 
@@ -30,6 +31,7 @@ export default class EditPage extends Component {
     }
 
     onLoadSuccess(response) {
+        toastr.warning('Warning, you are about to edit this team');
         this.setState({
             name: response.name,
             description: response.description,
@@ -75,7 +77,15 @@ export default class EditPage extends Component {
 
     //the callback for the promise
     onEditSuccess(result) {
-        this.context.router.push('/projects');
+        if(result){
+            toastr.success('Team was successfully edited');
+            this.context.router.push('/projects');
+        }
+        else{
+            toastr.error('Error occurred when trying to edit this team')
+            this.context.router.push('/projects');
+        }
+        
     }
     redirect(ev){
         ev.preventDefault();//prevent form submittion(delete team)

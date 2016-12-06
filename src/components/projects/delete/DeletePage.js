@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
 import {loadTeamDetails, deleteTeam, loadTeams} from '../../../models/team';
+import toastr from 'toastr';
 
 export default class DeletePage extends Component {
     constructor(props) {
@@ -28,6 +29,7 @@ export default class DeletePage extends Component {
     }
 
     onLoadSuccess(response) {
+        toastr.warning('Warning, you are about to delete this team');
         this.setState({
             name: response.name,
             description: response.description,
@@ -47,6 +49,7 @@ export default class DeletePage extends Component {
 
     //OnSubmit Event for the form - returns the data from the form
     onSubmitHandler(ev) {
+
         //Prevent refreshing the page
         ev.preventDefault();
         if(this.state.name.length < 3){
@@ -59,7 +62,15 @@ export default class DeletePage extends Component {
 
     //the callback for the promise
     onDeleteSuccess(result) {
-        this.context.router.push('/projects');
+        if(result){
+            toastr.success('Team was successfully deleted');
+            this.context.router.push('/projects');
+        }
+        else{
+            toastr.error('Error occurred when trying to delete this team');
+            this.context.router.push('/projects');
+        }
+
     }
     //Redirect without ajax call on Cancel form
     redirectToCatalog(ev){
