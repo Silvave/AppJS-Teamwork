@@ -44,7 +44,6 @@ export default class CreatePage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        console.log()
         createMeeting(
             this.props.location.pathname.split('/')[2]
             ,this.state.topic,
@@ -56,8 +55,6 @@ export default class CreatePage extends Component {
     onCreateSuccess(result){
         toastr.success('Meeting created');
         this.context.router.goBack();
-        // alert('success');
-        // this.context.router.push('/projects');
     }
     render() {
         return (

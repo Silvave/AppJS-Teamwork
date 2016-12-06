@@ -18,7 +18,7 @@ export default class DeletePage extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onDeleteSuccess = this.onDeleteSuccess.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
-        this.redirectToCatalog = this.redirectToCatalog.bind(this);
+        this.redirectToMeetings = this.redirectToMeetings.bind(this);
 
         this.loadMeetings = this.loadMeetings.bind(this);
     }
@@ -28,7 +28,6 @@ export default class DeletePage extends Component {
     }
 
     onLoadSuccess(response) {
-        console.log(response)
         toastr.warning('Warning, you are about to delete this Meeting');
         this.setState({
             topic: response.topic,
@@ -68,7 +67,7 @@ export default class DeletePage extends Component {
 
     }
     //Redirect without ajax call on Cancel form
-    redirectToCatalog(ev){
+    redirectToMeetings(ev){
         ev.preventDefault();//prevent form submittion(delete team)
         loadMeetings(this.loadMeetings);
     }
@@ -87,7 +86,7 @@ export default class DeletePage extends Component {
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
-                    redirect={this.redirectToCatalog}
+                    redirect={this.redirectToMeetings}
                 />
             </div>
         )
