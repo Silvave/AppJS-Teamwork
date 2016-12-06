@@ -4,7 +4,6 @@ import observer from './models/observer';
 import {logout} from './models/user'
 import {Link} from 'react-router';
 import '../node_modules/toastr/build/toastr.min.css';
-import './components/user/login/login-transition.css';
 import toastr from 'toastr';
 import './transition-def.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
