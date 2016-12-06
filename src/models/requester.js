@@ -1,5 +1,6 @@
 //This function main work is to communicate with the Kinvey DB
 import $ from 'jquery';
+import toastr from 'toastr'
 
 const kinveyUrl = 'https://baas.kinvey.com/';
 const appKey = 'kid_B1a7PGeQg';
@@ -51,5 +52,5 @@ function displayError(err) {
 }
 
 function showError(errMsg) {
-    console.log("Error: " + errMsg);
+    toastr.error(errMsg);
 }

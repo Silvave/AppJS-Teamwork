@@ -54,10 +54,6 @@ export default class LoginPage extends Component {
             //redirect user to 'Home' when login is success
             this.context.router.push('/');
         }
-        else{
-            toastr.error('Incorrect username or password');
-        }
-
     }
 
     render() {
