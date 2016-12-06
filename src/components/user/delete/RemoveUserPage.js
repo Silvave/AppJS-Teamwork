@@ -16,6 +16,7 @@ export default class RemoveUserPage extends Component {
         /*this.deselectUser = this.deselectUser.bind(this);*/
         this.reloadUsersPage = this.reloadUsersPage.bind(this);
         this.reloadProjectsPage = this.reloadProjectsPage.bind(this);
+        this.onRemoveSuccess = this.onRemoveSuccess.bind(this);
     }
 
     componentDidMount() {
@@ -28,14 +29,14 @@ export default class RemoveUserPage extends Component {
 
     removeUser(userId) {
         let teamId = this.context.router.params.teamId;
-        removeUserFromTeam(userId,teamId, onRemoveSuccess);
-
-        //
-        function onRemoveSuccess(response) {
-
-        }
+        removeUserFromTeam(userId, teamId, this.onRemoveSuccess);
+        
     }
-
+    
+    onRemoveSuccess(response) {
+        toastr.info('User successfully removed');
+        loadUsersInTeam(this.props.params.teamId,this.onLoadSuccess);
+    }
 
     reloadUsersPage() {
         loadUsers(this.onLoadSuccess);

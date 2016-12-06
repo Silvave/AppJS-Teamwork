@@ -40,7 +40,7 @@ export function fetch(method, module, url, auth, data) {
 // Global Ajax error method
 function displayError(err) {
     let errMsg = JSON.stringify(err);
-    
+
     if (err.readyState === 0)
         errMsg = "Cannot connect due to network error.";
 
@@ -54,13 +54,13 @@ toastr.options = {
     "preventDuplicates": true,
     "preventOpenDuplicates": true,
     "maxOpened": "1",
-    "timeOut": "1000"
+    "timeOut": "3000"
 };
 $(document).on({
     ajaxStart: function(){
         toastr.info('Loading')},
     ajaxStop: function(){
-
+        toastr.clear();
     }
 });
 

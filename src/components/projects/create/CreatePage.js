@@ -5,7 +5,6 @@ import toastr from 'toastr';
 // import {addUserToTeam} from '../../../models/user'
 // import observer from '../../models/observer';
 
-
 export default class CreatePage extends Component {
     constructor(props){
         //Get props from the parent
@@ -22,6 +21,7 @@ export default class CreatePage extends Component {
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onCreateSuccess = this.onCreateSuccess.bind(this);
+
     }
     //Change state of this.props, binding them with the input fields.value with onChange handler
     onChangeHandler(ev) {

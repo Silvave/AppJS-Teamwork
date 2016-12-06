@@ -88,22 +88,23 @@ function updateUser(userId, data, callback) {
 function removeUserFromTeam(userId, teamId, callback) {
     requester.fetch('GET', 'user', userId, 'kinvey')
         .then(function (user) {
-            let teams = user['member-of']
-            for(let team of teams){
-                if(team === teamId){
-                    teams.splice(teams.indexOf(team),1)
-                    function updateUser(userId) {
-                        let userData = {
-                            _id:user['id'],
-                            username:user['username'],
-                        }
-                        requester.fetch('PUT', 'user', userId, 'master', user).then((response) => console.log(response))
-                    }
+            let teams = user['member-of'];
+            for(let team in teams){
+                if(teams[team] === teamId){
+                    teams.splice(team,1);
+                    updateUser(userId, user, teams);
                 }
             }
-        }).then(callback)
+        });
 
-        .catch((err) => console.log(err));
+    function updateUser(userId, user, teams) {
+        let userData = {
+            username:user['username'],
+            ['member-of']: teams
+        };
+        requester.fetch('PUT', 'user', userId, 'master', user)
+            .then(callback)
+    };
 }
 function loadUsersInTeam(teamId,callback) {
 
