@@ -102,7 +102,7 @@ function removeUserFromTeam(userId, teamId, callback) {
             username:user['username'],
             ['member-of']: teams
         };
-        requester.fetch('PUT', 'user', userId, 'master', user)
+        requester.fetch('PUT', 'user', userId, 'master', userData)
             .then(callback)
     };
 }

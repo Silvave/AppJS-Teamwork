@@ -32,7 +32,7 @@ export default class RemoveUserPage extends Component {
         removeUserFromTeam(userId, teamId, this.onRemoveSuccess);
         
     }
-    
+
     onRemoveSuccess(response) {
         toastr.info('User successfully removed');
         loadUsersInTeam(this.props.params.teamId,this.onLoadSuccess);
@@ -64,6 +64,11 @@ export default class RemoveUserPage extends Component {
                                  userId={el._id}
                                  removeUserFromTeam={this.removeUser}/>
                 })}
+                <input
+                type="button"
+                onClick={this.reloadProjectsPage}   
+                value="Back to projects"
+                />
             </div>
         )
     }
