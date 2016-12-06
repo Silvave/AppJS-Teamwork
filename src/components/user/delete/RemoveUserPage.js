@@ -12,7 +12,7 @@ export default class RemoveUserPage extends Component {
         };
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
 
-        this.removeUserFromTeam = this.removeUserFromTeam.bind(this);
+        this.removeUser = this.removeUser.bind(this);
         /*this.deselectUser = this.deselectUser.bind(this);*/
         this.reloadUsersPage = this.reloadUsersPage.bind(this);
         this.reloadProjectsPage = this.reloadProjectsPage.bind(this);
@@ -26,24 +26,16 @@ export default class RemoveUserPage extends Component {
         this.setState({users: response});
     }
 
-    removeUserFromTeam(userId) {
-        removeUserFromTeam(userId,this.props.params.teamId, updateUsersProjects.bind(this));
-        // let teamId = this.context.router.params.teamId;
+    removeUser(userId) {
+        let teamId = this.context.router.params.teamId;
+        removeUserFromTeam(userId,teamId, onRemoveSuccess);
+
         //
-        function updateUsersProjects(user) {
-            // let arr = [];
-            // if (user['member-of'] !== undefined) {
-            //     arr = user['member-of'];
-            // }
-            // arr.push(teamId);
-            // let data = {
-            //     username: user.username,
-            //     'member-of': arr
-            // };
-            // toastr.success(`${user.username} successfully added to this team`);
-            // updateUser(user._id, data, this.reloadUsersPage);
+        function onRemoveSuccess(response) {
+
         }
     }
+
 
     reloadUsersPage() {
         loadUsers(this.onLoadSuccess);
@@ -69,7 +61,7 @@ export default class RemoveUserPage extends Component {
                     return <RemoveUser key={i}
                                  username={el.username}
                                  userId={el._id}
-                                 removeUserFromTeam={this.removeUserFromTeam}/>
+                                 removeUserFromTeam={this.removeUser}/>
                 })}
             </div>
         )
