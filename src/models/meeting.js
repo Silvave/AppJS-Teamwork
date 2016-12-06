@@ -75,11 +75,11 @@ function deleteMeeting(meetingId,teamId, callback) {
             }
             requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
                 .then(function (response) {
-                    console.log(response)
+                    //console.log(response);
                     requester.fetch('DELETE', 'appdata', 'meetings/' + meetingId, 'kinvey')
                 })
-                .catch((response)=>console.log(response))
         })
+        .then(callback)
 }
 
 export {
