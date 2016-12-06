@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default  class RegisterForm extends Component {
     render() {
         return (
+            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
+        <div id="registerForm">
             <form onSubmit={this.props.onSubmit}>
                 <label>
                     Username
@@ -43,6 +46,8 @@ export default  class RegisterForm extends Component {
                     className="btn btn-default"
                     disabled={this.props.inputDisabled}/>
             </form>
+        </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }

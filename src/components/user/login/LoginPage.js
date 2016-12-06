@@ -3,6 +3,7 @@ import LoginForm from './LoginForm';
 import {login} from '../../../models/user';
 import observer from '../../../models/observer';
 import toastr from 'toastr';
+import './Login.css';
 
 export default class LoginPage extends Component {
     constructor(props) {
@@ -60,8 +61,7 @@ export default class LoginPage extends Component {
             this.context.router.push('/');
         }
         return (
-            <div>
-                <h1>Login Page</h1>
+            <div >
                 <LoginForm
                     username={this.state.username}
                     password={this.state.password}

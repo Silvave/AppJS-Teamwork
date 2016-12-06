@@ -1,10 +1,14 @@
+div#loginForm, div#registerForm {
+    position: fixed;
+    top: 50%;
+    left: 35%;
+}
 form {
     background-color: lightskyblue;
     width: 315px;
     padding: 5px;
     border: 2px solid lightskyblue;
     border-radius: 5px;
-    margin-bottom: 5px;
 }
 
 input[type=submit]{
