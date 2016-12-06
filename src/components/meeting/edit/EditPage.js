@@ -72,11 +72,11 @@ export default class EditPage extends Component {
     //
     // //the callback for the promise
     // onEditSuccess(result) {
-    //     this.context.router.push('/catalog');
+    //     this.context.router.push('/projects');
     // }
     //
     // redirect(){
-    //     this.context.router.push('/catalog');
+    //     this.context.router.push('/projects');
     }
 
     render() {

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import CreateForm from './CreateForm';
-import {createTeam} from '../../models/team';
-import {addUserToTeam} from '../../models/user'
-//import observer from '../../models/observer';
+import {createTeam} from '../../../models/team';
+// import {addUserToTeam} from '../../../models/user'
+// import observer from '../../models/observer';
 
 
 export default class CreatePage extends Component {
@@ -52,7 +52,7 @@ export default class CreatePage extends Component {
     //the callback for the promise
     onCreateSuccess(result){
         alert('success');
-        this.context.router.push('/catalog');
+        this.context.router.push('/projects');
     }
     render() {
         return (

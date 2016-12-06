@@ -53,7 +53,7 @@ export default class App extends Component {
                 <div className="container">
                     <Header loggedIn={this.state.loggedIn} username={this.state.username}>
                         <li role="presentation" className="active"><Link to='/' className="btn btn-default">Home</Link></li>
-                        <li role="presentation"><Link to='/catalog' className="btn btn-default">Projects I lead</Link></li>
+                        <li role="presentation"><Link to='/projects' className="btn btn-default">Projects I lead</Link></li>
                         <li role="presentation"><Link to='/create' className="btn btn-default">Create a Team</Link></li>
                         <li role="presentation"><Link to='/member-projects' className="btn btn-default">Projects I work on</Link></li>
                         <li role="presentation"><Link to='' className="btn btn-default" onClick={() => logout(this.onLogout)}>Logout</Link></li>

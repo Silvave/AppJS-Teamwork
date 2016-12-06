@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Team from './Team';
+import Team from './Projects';
 import {loadTeams} from '../../models/team';
 import {Link} from 'react-router'
 //This will be controller-view component
 
-export default class CatalogPage extends Component {
+export default class ProjectPage extends Component {
     constructor(props) {
         super(props);
         this.state = {

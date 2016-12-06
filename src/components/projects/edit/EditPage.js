@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import EditForm from './EditForm';
-import {loadTeamDetails, editTeam} from '../../models/team';
+import {loadTeamDetails, editTeam} from '../../../models/team';
 //import observer from '../../models/observer';
 
 
@@ -74,11 +74,11 @@ export default class EditPage extends Component {
 
     //the callback for the promise
     onEditSuccess(result) {
-        this.context.router.push('/catalog');
+        this.context.router.push('/projects');
     }
 
     redirect(){
-        this.context.router.push('/catalog');
+        this.context.router.push('/projects');
     }
 
     render() {

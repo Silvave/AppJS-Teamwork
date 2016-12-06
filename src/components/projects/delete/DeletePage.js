@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DeleteForm from './DeleteForm';
-import {loadTeamDetails, deleteTeam, loadTeams} from '../../models/team';
+import {loadTeamDetails, deleteTeam, loadTeams} from '../../../models/team';
 
 export default class DeletePage extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ export default class DeletePage extends Component {
 
     //the callback for the promise
     onDeleteSuccess(result) {
-        this.context.router.push('/catalog');
+        this.context.router.push('/projects');
     }
     //Redirect without ajax call on Cancel form
     redirectToCatalog(ev){
@@ -67,7 +67,7 @@ export default class DeletePage extends Component {
         loadTeams(this.loadTeams);
     }
     loadTeams(){
-        this.context.router.push('/catalog');
+        this.context.router.push('/projects');
     }
 
     render() {

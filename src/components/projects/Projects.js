@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Team.css';
+import './Projects.css';
 import {Link} from 'react-router';
 
 export default class Team extends Component{

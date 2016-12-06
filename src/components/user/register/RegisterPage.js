@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import LoginForm from './LoginForm';
-import {login} from '../../models/user';
-import observer from '../../models/observer';
+import RegisterForm from './RegisterForm';
+import {register} from '../../../models/user';
+import observer from '../../../models/observer';
 
 
-export default class LoginPage extends Component {
+export default class RegisterPage extends Component {
     constructor(props) {
         //Get props from the parent
         super(props);
@@ -12,12 +12,14 @@ export default class LoginPage extends Component {
         this.state = {
             username: '',
             password: '',
+            repeat: '',
+            ['member-of']: [],
             inputDisabled: false
         };
         //Bind functions with parent class
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.onLoginSuccess = this.onLoginSuccess.bind(this);
+        this.onRegisterSuccess = this.onRegisterSuccess.bind(this);
     }
 
     //Change state of this.props, binding them with the input fields.value with onChange handler
@@ -32,25 +34,33 @@ export default class LoginPage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
+        //use this for prevent form to be submitted more than once
         this.setState({
             inputDisabled: true
         });
-        //send data and callback function for the ajax request(models/user)
-        login(this.state.username, this.state.password, this.onLoginSuccess);
+        //Some validations
+        if (this.state.password !== this.state.repeat) {
+            this.setState({
+                inputDisabled: false
+            });
+            alert('passwords do not match')
+        }
+        else {
+            register(this.state.username, this.state.password, this.onRegisterSuccess);
+        }
+        //send data and callback function for the ajax request
+
     }
 
     //the callback for the promise
-    onLoginSuccess(result) {
-        //unlock the form if we have success
+    onRegisterSuccess(result) {
         this.setState({
             inputDisabled: false
         });
-        if (result) {
-            //Use the observer here to update the session and reload links when login/register
-            observer.onSessionUpdate();
-            //redirect user to 'Home' when login is success
-            this.context.router.push('/');
-        }
+        //Use the observer here to update the session and reload links when login/register
+        observer.onSessionUpdate();
+        //redirect user to 'Home' when login is success
+        this.context.router.push('/');
     }
 
     render() {
@@ -60,10 +70,11 @@ export default class LoginPage extends Component {
         }
         return (
             <div>
-                <h1>Login Page</h1>
-                <LoginForm
+                <h1>Register</h1>
+                <RegisterForm
                     username={this.state.username}
                     password={this.state.password}
+                    repeat={this.state.repeat}
                     onChange={this.onChangeHandler}
                     onSubmit={this.onSubmitHandler}
                     inputDisabled={this.state.inputDisabled}
@@ -74,6 +85,6 @@ export default class LoginPage extends Component {
 }
 
 //Redirect through the Router - the Router is visible for the class
-LoginPage.contextTypes = {
+RegisterPage.contextTypes = {
     router: React.PropTypes.object
 };
