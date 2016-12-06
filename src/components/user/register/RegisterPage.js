@@ -87,7 +87,6 @@ export default class RegisterPage extends Component {
         }
         return (
             <div>
-                <h1>Register</h1>
                 <RegisterForm
                     username={this.state.username}
                     password={this.state.password}

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Greeting from './Greeting';
-// import {Link} from 'react-router'
-import './Header.css'
+// import {Link} from 'react-router';
+import './Header.css';
+
 
 export default  class Header extends Component {
     render() {
