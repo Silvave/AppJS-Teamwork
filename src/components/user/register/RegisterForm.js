@@ -6,6 +6,9 @@ export default  class RegisterForm extends Component {
         return (
             <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
         <div id="registerForm">
+            <ReactCSSTransitionGroup transitionName="text" transitionAppear={true}>
+            <h3>Please register</h3>
+            </ReactCSSTransitionGroup>
             <form onSubmit={this.props.onSubmit}>
                 <label>
                     Username

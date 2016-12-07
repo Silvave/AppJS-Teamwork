@@ -7,6 +7,9 @@ export default  class LoginForm extends Component {
         return (
             <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
                 <div id="loginForm">
+                    <ReactCSSTransitionGroup transitionName="text" transitionAppear={true}>
+                    <h3>Please login</h3>
+                    </ReactCSSTransitionGroup>
                     <form onSubmit={this.props.onSubmit}>
                         <label>
                             Username
