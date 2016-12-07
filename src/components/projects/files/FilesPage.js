@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import File from './FilesForm';
-import {deleteFile, loadFiles} from '../../../models/files';
+import {deleteFile, loadFiles, uploadFile} from '../../../models/files';
+import $ from 'jquery';
 import toastr from 'toastr';
 
 export default class FilesPage extends Component {
@@ -9,69 +10,96 @@ export default class FilesPage extends Component {
         super(props);
         //Set default state
         this.state = {
-            files: []
+            files: [],
+            teamId: (this.props.location.pathname).split("/")[2]
         };
         //Bind functions with parent class
-        // this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.onLoadFilesSuccess = this.onLoadFilesSuccess.bind(this);
+        this.onDeleteFile = this.onDeleteFile.bind(this);
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
         this.redirectToProjects = this.redirectToProjects.bind(this);
-        // this.loadFiles = this.loadFiles.bind(this);
+        this.onUploadFile = this.onUploadFile.bind(this);
+        this.uploadSuccess = this.uploadSuccess.bind(this);
+        this.deleteSuccess = this.deleteSuccess.bind(this);
     }
 
     componentDidMount() {
-        loadFiles(this.props.params.teamId, this.onLoadSuccess);
+        loadFiles(this.state.teamId, this.onLoadSuccess);
     }
 
     onLoadSuccess(response) {
         toastr.success('Files loaded.');
-        this.setState({teams: response});
-        console.log(this.state.files)
+        this.setState({files: response});
     }
 
-    // //OnSubmit Event for the form - returns the data from the form
-    // onSubmitHandler(ev) {
-    //     //Prevent refreshing the page
-    //     ev.preventDefault();
-    //
-    //     deleteTeam(this.props.params.teamId,this.onDeleteSuccess)
-    // }
+    onUploadFile() {
+        let file = $('#upload-file')[0].files[0];
+        $('#upload-file').val("");
+        if (file === undefined) {
+            return toastr.error("No file chosen. You have to choose a file!");
+        }
 
-    //the callback for the promise
-    // onLoadFilesSuccess(response) {
-    //     if (response) {
-    //         toastr.success('Files loaded.');
-    //         this.setState({teams: response});
-    //     }
-    //     else {
-    //         toastr.error('Error occurred when trying to load files');
-    //         this.context.router.push('/projects');
-    //     }
-    //
-    // }
+        let metadata = {
+            "_filename": file.name,
+            "size": file.size,
+            "mimeType": file.type,
+            "teamId": this.state.teamId
+        };
+
+        uploadFile(metadata, file, this.uploadSuccess)
+    }
+
+    uploadSuccess() {
+        toastr.success('File was successfully uploaded.');
+        this.componentDidMount();
+    }
+
+    onDeleteFile(id) {
+        deleteFile(id, this.deleteSuccess)
+    }
+
+    deleteSuccess() {
+        toastr.success('File was successfully deleted.');
+        this.componentDidMount();
+    }
 
     //Redirect without ajax call with back button
-    redirectToProjects(ev) {
-        this.context.router.push('/projects');
+    redirectToProjects() {
+        this.context.router.goBack();
     }
 
     render() {
-        let content = <h3 className="text-muted">There are no files.</h3>;
+        let content = <h3 className="text-muted">There are no uploaded files.</h3>;
 
         if (this.state.files.length > 0) {
             content = this.state.files.map((el, i) => {
                 return <File key={i}
-                             fileId={el._Id}
-                             name={el.name}
-                             type={el.type}
-                             downloadLink={el.downloadLink}
-                             />
+                             name={el._filename}
+                             type={el.mimeType}
+                             downloadLink={el._downloadURL}
+                             delFile={() => this.onDeleteFile(el._id)}
+                        />
             })
         }
         return (
             <div>
                 <h1>Files</h1>
                 {content}
+                <div id="file-buttons">
+                    <input
+                        type="file"
+                        id="upload-file"
+                    />
+                    <input
+                        type="button"
+                        value="Add new file"
+                        onClick={this.onUploadFile}
+                    />
+                    <input
+                        type="button"
+                        value="Back to projects"
+                        onClick={this.redirectToProjects}
+                    />
+                </div>
             </div>
         )
     }

@@ -39,7 +39,7 @@ ReactDOM.render(
             <Route path="meeting/:teamId/edit/:meetingId" component={EditMeeting}/>
             <Route path="meeting/:teamId/delete/:meetingId" component={DeleteMeeting}/>
             <Route path="edit/:teamId" component={Edit}/>
-            <Route path="filesc/:teamId" component={Files}/>
+            <Route path="files/:teamId" component={Files}/>
             <Route path="delete/:teamId" component={Delete}/>
             <Route path=":teamId/users" component={User}/>
         </Route>

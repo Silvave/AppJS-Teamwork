@@ -86,7 +86,7 @@ export default class UsersPage extends Component {
                 <input
                     type="button"
                     value="Finished selection"
-                    onClick={() => this.reloadProjectsPage()}
+                    onClick={this.reloadProjectsPage}
                 />
             </div>
         )

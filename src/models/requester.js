@@ -23,15 +23,30 @@ function getHeaders(auth) {
     return headers;
 }
 
-export function fetch(method, module, url, auth, data) {
+export function fetch(method, module, url, auth, data, bonusHeaders) {
     let hostUrl = `${kinveyUrl}${module}/${appKey}/${url}`;
+
     let headers = getHeaders(auth);
+    Object.assign(headers, bonusHeaders);
 
     let request = {
         method: method,
         url: hostUrl,
         headers: headers,
         data: JSON.stringify(data),
+        error: displayError
+    };
+
+    return $.ajax(request);
+}
+
+export function fetchFile(method, url, headers, file) {
+    let request = {
+        method: method,
+        url: url,
+        headers: headers,
+        processData: false,
+        data: file,
         error: displayError
     };
 

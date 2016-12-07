@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './Files.css';
-// import {Link} from 'react-router';
 
 
 export default class File extends Component {
@@ -13,13 +12,16 @@ export default class File extends Component {
                     <p className="card-text">Type</p>
                     <h4 className="card-title">{this.props.type}</h4>
                     <hr/>
-                    <a href={this.props.downloadLink} className="btn btn-primary">Download</a>
+                    <a
+                        href={this.props.downloadLink}
+                        download={""}
+                        className="btn btn-primary">Download</a>
                     <hr/>
                     <input
                         type="button"
                         value="Delete"
                         className="btn btn-primary"
-                        onClick={this.props.deleteFile(this.props.fileId)}/>
+                        onClick={this.props.delFile}/>
                 </div>
             </div>
         )
