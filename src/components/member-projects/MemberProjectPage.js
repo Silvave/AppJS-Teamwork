@@ -30,7 +30,7 @@ export default class MemberProjectsPage extends Component {
             })}
 
         return (
-            <div>
+            <div >
                 <h1>Projects I work on</h1>
                 <div>
                     {content}

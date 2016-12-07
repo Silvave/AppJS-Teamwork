@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import './Files.css';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class File extends Component {
     render() {
         return (
+            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
             <div >
                 <form id="files">
                     <div id="filesHeading">
@@ -29,6 +30,7 @@ export default class File extends Component {
                     </div>
                 </form>
             </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }

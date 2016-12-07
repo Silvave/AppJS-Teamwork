@@ -1,4 +1,4 @@
-div#loginForm, div#registerForm, div#createForm, div#createTeamForm {
+div#loginForm, div#registerForm, div#createForm, div#createTeamForm, div.projectsIWorkOn {
     position: absolute;
     top: 50%;
     left: 35%;

@@ -1,9 +1,4 @@
-.team-box{
-    float:left;
-    width: 20em;
-    border: 3px solid #EEEEEE;
-    margin: 1em;
+form#projectsIWorkOn {
+    padding: 5px;
+    margin: 10px;
 }
-.spanner{
-    display: block;
-    background-color: #EEE;}
