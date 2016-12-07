@@ -61,7 +61,6 @@ export default class CreatePage extends Component {
     render() {
         return (
             <div>
-                <h1>Create Team Page</h1>
                 <CreateForm
                     name={this.state.name}
                     description={this.state.description}
