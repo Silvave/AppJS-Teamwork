@@ -84,7 +84,7 @@ export default class FilesPage extends Component {
             <div>
                 <h1>Files</h1>
                 {content}
-                <div id="file-buttons">
+                <form id="file-buttons">
                     <input
                         type="file"
                         id="upload-file"
@@ -99,7 +99,7 @@ export default class FilesPage extends Component {
                         value="Back to projects"
                         onClick={this.redirectToProjects}
                     />
-                </div>
+                </form>
             </div>
         )
     }

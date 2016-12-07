@@ -1,14 +1,35 @@
-.team-box{
-    float:left;
-    width: 10em;
-    border: 3px solid lightskyblue;
-    margin: 1em;
-}
-.spanner{
-    display: block;
-    background-color: lightskyblue;
+form#files {
+padding: 10px;
+    float: left;
+    margin: 10px
 }
 
-#file-buttons{
-    vertical-align: middle;
+div#btns-files a{
+   width: 50%;
+   margin-left: 25%;
+}
+
+div#btns-files input{
+    width: 50%;
+    margin-left: 25%;
+}
+
+div#filesHeading {
+padding: 5px;
+    background-color: rgba(255,255,255, 0.3);
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+form#file-buttons {
+    margin: 10px;
+    float: left;
+}
+
+form#file-buttons input{
+    background-color: rgba(255,255,255, 0.4);
+}
+form#file-buttons input:hover{
+transition: .5s;
+    background-color: rgba(255,255,255, 0.8);
 }
