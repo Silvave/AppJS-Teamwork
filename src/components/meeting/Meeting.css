@@ -8,3 +8,11 @@
     display: block;
     background-color: lightskyblue;
 }
+div.col-sm-4{
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid grey;
+    border-radius: 5px;
+    text-align: center;
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
