@@ -1,7 +1,8 @@
 div#loginForm, div#registerForm, div#createForm, div#createTeamForm {
-    position: fixed;
+    position: absolute;
     top: 50%;
-    left: 35%
+    left: 35%;
+    overflow: auto;
 }
 h3 {
     text-align: center;
