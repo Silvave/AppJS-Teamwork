@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 export default class Team extends Component{
     render(){
         return(
+        <div id="teamsILead">
         <form id="myProjects">
             <div id={this.props.teamId}>
             <div id="teamName">
@@ -34,6 +35,7 @@ export default class Team extends Component{
                 </div>
                 </div>
         </form>
+        </div>
         )
     }
 }
