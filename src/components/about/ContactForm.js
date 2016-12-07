@@ -9,7 +9,7 @@ export default  class ContactForm extends Component {
             <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
             <div className="contactForm">
                 <form onSubmit={this.props.onSubmit} id="contactUs" style={{"padding": "0.5em"}}>
-                    <legend><h3>Contact us</h3></legend>
+                    <legend><h2>Contact us</h2></legend>
                     <label className="PersonNameL">
                         Your name:
                     </label>
