@@ -16,18 +16,19 @@ export default class MemberProjectsPage extends Component {
         loadMeetings(teamId,this.onLoadSuccess);
     }
 
-    onLoadSuccess(response){
+    onLoadSuccess(response) {
         this.setState({meetings: response});
         console.log(this.state.meetings)
     }
 
     render() {
-        let content =<h3 className="text-muted">You have not created any meetings yet.</h3>;
+        let content = <h3 className="text-muted">You have not created any meetings yet.</h3>;
 
-        if(this.state.meetings.length > 0){
-            content =  this.state.meetings.map((el,i) => {
+        if (this.state.meetings.length > 0) {
+            content = this.state.meetings.map((el, i) => {
                 return <Meeting key={i} topic={el.topic} time={el.time} date={el.date} meetingId={el._id}/>
-            })}
+            })
+        }
         return (
             <div>
                 <h1>My Meetings</h1>

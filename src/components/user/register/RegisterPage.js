@@ -74,6 +74,7 @@ export default class RegisterPage extends Component {
         this.setState({
             inputDisabled: false
         });
+        toastr.success('Registration successful');
         //Use the observer here to update the session and reload links when login/register
         observer.onSessionUpdate();
         //redirect user to 'Home' when login is success
