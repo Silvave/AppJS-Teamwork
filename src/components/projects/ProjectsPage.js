@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Project from './Projects';
 import {loadTeams} from '../../models/team';
-import {Link} from 'react-router'
+import {Link} from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //This will be controller-view component
 
 export default class ProjectPage extends Component {
@@ -32,10 +33,13 @@ export default class ProjectPage extends Component {
                 />
             })}
         return (
+
+            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true}>
             <div>
                 <h2>My Projects</h2>
                 {content}
             </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }

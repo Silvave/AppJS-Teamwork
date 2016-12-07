@@ -1,18 +1,16 @@
 form#files {
-padding: 10px;
+    width: 380px;
+    padding: 10px;
+    margin: 10px;
     float: left;
-    margin: 10px
 }
 
-div#btns-files a{
+div#btns-files a, div#btns-files input{
    width: 50%;
    margin-left: 25%;
+   margin-top: 2.5%;
 }
 
-div#btns-files input{
-    width: 50%;
-    margin-left: 25%;
-}
 
 div#filesHeading {
 padding: 5px;
