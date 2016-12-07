@@ -3,6 +3,7 @@ import CreateForm from './CreateForm';
  import {createMeeting} from '../../../models/meeting';
 // import {addUserToTeam} from '../../../models/user'
 //import observer from '../../models/observer';
+import toastr from 'toastr';
 
 
 export default class CreatePage extends Component {
@@ -43,7 +44,6 @@ export default class CreatePage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        console.log()
         createMeeting(
             this.props.location.pathname.split('/')[2]
             ,this.state.topic,
@@ -53,13 +53,12 @@ export default class CreatePage extends Component {
     }
     //the callback for the promise
     onCreateSuccess(result){
-        // alert('success');
-        // this.context.router.push('/projects');
+        toastr.success('Meeting created');
+        this.context.router.goBack();
     }
     render() {
         return (
             <div>
-                <h1>Create Meeting</h1>
                 <CreateForm
                     topic={this.state.topic}
                     time={this.state.time}

@@ -1,7 +1,6 @@
 import * as requester from './requester';
 
-function addNewMessage(username, email, subject, message) {
-    alert("tuk");
+function addNewMessage(username, email, subject, message, callback) {
     let messageData = {
         userName: username,
         userEmail: email,
@@ -19,9 +18,7 @@ function addNewMessage(username, email, subject, message) {
                     }
                 })
         })
-        .catch(function (error) {
-            console.log(error);
-        })
+        .then(callback);
 }
 
 export {addNewMessage}

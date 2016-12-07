@@ -20,7 +20,7 @@ export default class EditMeetingsPage extends Component {
 
     onLoadSuccess(response){
         this.setState({meetings: response});
-        console.log(this.state.meetings)
+        //console.log(this.state.meetings)
     }
 
     render() {

@@ -27,7 +27,7 @@ function createMeeting(teamId,topic,time,date,callback) {
     requester.fetch('GET', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(function (team) {
 
-            let meetings = team['meetings']
+            let meetings = team['meetings'];
             requester.fetch('POST', 'appdata', 'meetings', 'kinvey', meetingsData)
                 .then(function (meeting) {
                     meetings.push(meeting._id)
@@ -39,8 +39,8 @@ function createMeeting(teamId,topic,time,date,callback) {
                         beginning: team.beginning,
                         deadline: team.deadline,
                         meetings:meetings
-                    }
-                    console.log(teamData)
+                    };
+                    console.log(teamData);
                     requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
                 })
         })
@@ -51,7 +51,7 @@ function editMeeting(meetingId, topic, time, date, callback) {
     let meetingData = {
         topic: topic,
         time: time,
-        date: date,
+        date: date
     };
     requester.fetch('PUT', 'appdata', 'meetings/' + meetingId, 'kinvey', meetingData)
         .then(callback)
@@ -60,7 +60,7 @@ function editMeeting(meetingId, topic, time, date, callback) {
 function deleteMeeting(meetingId,teamId, callback) {
     requester.fetch('GET', 'appdata', 'teams/' + teamId, 'kinvey')
         .then(function (team) {
-            let meetings = team['meetings']
+            let meetings = team['meetings'];
             for(let meeting of meetings){
                 if(meeting === meetingId){
                     meetings.splice(meeting.indexOf(meeting),1)
@@ -72,14 +72,14 @@ function deleteMeeting(meetingId,teamId, callback) {
                 beginning: team.beginning,
                 deadline: team.deadline,
                 meetings:meetings
-            }
+            };
             requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
                 .then(function (response) {
-                    console.log(response)
+                    //console.log(response);
                     requester.fetch('DELETE', 'appdata', 'meetings/' + meetingId, 'kinvey')
                 })
-                .catch((response)=>console.log(response))
         })
+        .then(callback)
 }
 
 export {

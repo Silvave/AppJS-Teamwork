@@ -4,6 +4,7 @@ import Map from './Map';
 import ContactForm from './ContactForm';
 import LinksSocialMedia from './LinksSocialMedia';
 import {addNewMessage} from '../../models/contactUs';
+import toastr from 'toastr';
 
 
 export default class AboutPage extends Component {
@@ -20,6 +21,7 @@ export default class AboutPage extends Component {
         //Bind functions with parent class
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onChangeHandler = this.onChangeHandler.bind(this);
+        this.redirect = this.redirect.bind(this);
     }
     //OnSubmit Event for the form - returns the data from the form
     onChangeHandler(ev){
@@ -31,9 +33,13 @@ export default class AboutPage extends Component {
     onSubmitHandler(ev) {
         //Prevent refreshing the page
         ev.preventDefault();
-        addNewMessage(this.state.userName, this.state.userEmail, this.state.subject, this.state.message);
+        addNewMessage(this.state.userName, this.state.userEmail, this.state.subject, this.state.message, this.redirect);
     }
-
+    redirect(){
+        toastr.clear();
+        toastr.success('Message send');
+        this.context.router.goBack();
+    }
     //the callback for the promise
     render() {
         return (
@@ -49,5 +55,7 @@ export default class AboutPage extends Component {
             </table>
         )
     }
-
 }
+AboutPage.contextTypes = {
+    router: React.PropTypes.object
+};

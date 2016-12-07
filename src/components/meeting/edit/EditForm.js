@@ -45,7 +45,7 @@ export default  class EditForm extends Component {
                 </div>
                 <input
                     type="submit"
-                    value="Edit Team"
+                    value="Edit Meeting"
                     className="btn btn-default"
                     disabled={this.props.inputDisabled}/>
                 <input

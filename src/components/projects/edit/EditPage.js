@@ -84,7 +84,7 @@ export default class EditPage extends Component {
             this.context.router.push('/projects');
         }
         else{
-            toastr.error('Error occurred when trying to edit this team')
+            toastr.error('Error occurred when trying to edit this team');
             this.context.router.push('/projects');
         }
         

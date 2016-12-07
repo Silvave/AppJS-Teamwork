@@ -1,0 +1,107 @@
+.example-enter {
+    opacity: 0.01;
+    transition: opacity .5s ease-out;
+}
+
+.example-enter.example-enter-active {
+    opacity: 1;
+}
+
+.example-leave {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+}
+
+.example-leave.example-leave-active {
+    opacity: 0.01;
+}
+
+.example-appear {
+    opacity: 0.01;
+    transition: opacity 0.5s ease-in;
+}
+
+.example-appear.example-appear-active {
+    opacity: 1;
+}
+
+.social-enter {
+    opacity: 0.01;
+    transition: opacity 1s ease-out;
+}
+
+.social-enter.social-enter-active {
+    opacity: 1;
+}
+
+.social-leave {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
+.social-leave.social-leave-active {
+    opacity: 0.01;
+}
+
+.social-appear {
+    opacity: 0.01;
+    transition: opacity 1s ease-in;
+}
+
+.social-appear.social-appear-active {
+    opacity: 1;
+}
+
+.map-enter {
+    opacity: 0.01;
+    transition: opacity 1.5s ease-out;
+}
+
+.map-enter.map-enter-active {
+    opacity: 1;
+}
+
+.map-leave {
+    opacity: 1;
+    transition: opacity 1.5s ease-in;
+}
+
+.map-leave.map-leave-active {
+    opacity: 0.01;
+}
+
+.map-appear {
+    opacity: 0.01;
+    transition: opacity 1.5s ease-in;
+}
+
+.map-appear.map-appear-active {
+    opacity: 1;
+}
+
+.text-enter {
+    opacity: 0.01;
+    transition: opacity 1s ease-out;
+}
+
+.text-enter.text-enter-active {
+    opacity: 0.5;
+}
+
+.text-leave {
+    opacity: 0.5;
+    transition: opacity 1s ease-in;
+}
+
+.text-leave.text-leave-active {
+    opacity: 0.01;
+}
+
+.text-appear {
+    opacity: 0.01;
+    transition: opacity 1s ease-in;
+}
+
+.text-appear.text-appear-active {
+    opacity: 0.5;
+}

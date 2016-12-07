@@ -67,7 +67,16 @@ function displayError(err) {
     toastr.error(errMsg);
 }
 
+toastr.options = {
+    "preventDuplicates": true,
+    "preventOpenDuplicates": true,
+    "maxOpened": "1",
+    "timeOut": "3000"
+};
 $(document).on({
-    ajaxStart: function(){toastr.info('Loading', {timeOut: 0})},
-    ajaxStop: function(){toastr.clear()}
+    ajaxStart: function(){
+        toastr.info('Loading')},
+    ajaxStop: function(){
+        toastr.clear();
+    }
 });
