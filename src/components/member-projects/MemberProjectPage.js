@@ -22,7 +22,7 @@ export default class MemberProjectsPage extends Component {
     }
 
     render() {
-        let content =<h4 className="text-muted">You have not a member of any projects yet.</h4>;
+        let content =<h4 className="text-muted">You are not a member of any projects yet.</h4>;
 
         if(this.state.teams.length > 0){
             content =  this.state.teams.map((el,i) => {

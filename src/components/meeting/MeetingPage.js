@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import Meeting from './Meeting';
 import {loadMeetings} from '../../models/meeting';
-// import {Link} from 'react-router'
-//This will be controller-view component
 
 export default class MemberProjectsPage extends Component {
     constructor(props) {
@@ -14,7 +12,8 @@ export default class MemberProjectsPage extends Component {
     }
 
     componentDidMount(){
-        loadMeetings((this.props.location.pathname).split('/')[2],this.onLoadSuccess);
+        let teamId = (this.props.location.pathname).split('/')[2];
+        loadMeetings(teamId,this.onLoadSuccess);
     }
 
     onLoadSuccess(response){
