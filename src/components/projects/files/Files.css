@@ -2,7 +2,6 @@ form#files {
     width: 380px;
     padding: 10px;
     margin: 10px;
-    float: left;
 }
 
 div#btns-files a, div#btns-files input{
