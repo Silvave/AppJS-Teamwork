@@ -39,8 +39,8 @@ function createMeeting(teamId,topic,time,date,callback) {
                         beginning: team.beginning,
                         deadline: team.deadline,
                         meetings:meetings
-                    }
-                    console.log(teamData)
+                    };
+                    console.log(teamData);
                     requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
                 })
         })
@@ -51,7 +51,7 @@ function editMeeting(meetingId, topic, time, date, callback) {
     let meetingData = {
         topic: topic,
         time: time,
-        date: date,
+        date: date
     };
     requester.fetch('PUT', 'appdata', 'meetings/' + meetingId, 'kinvey', meetingData)
         .then(callback)
@@ -72,7 +72,7 @@ function deleteMeeting(meetingId,teamId, callback) {
                 beginning: team.beginning,
                 deadline: team.deadline,
                 meetings:meetings
-            }
+            };
             requester.fetch('PUT', 'appdata', 'teams/' + teamId, 'kinvey', teamData)
                 .then(function (response) {
                     //console.log(response);

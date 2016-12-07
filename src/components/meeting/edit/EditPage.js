@@ -29,7 +29,7 @@ export default class EditPage extends Component {
     }
 
     onLoadSuccess(response) {
-        console.log(response)
+        console.log(response);
         this.setState({
             topic: response.topic,
             time: response.time,
