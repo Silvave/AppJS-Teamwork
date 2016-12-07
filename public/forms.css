@@ -6,6 +6,8 @@ div#loginForm, div#registerForm, div#createForm, div#createTeamForm {
 div#teamsILead{
     float: left;
     padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
 h3 {

@@ -33,7 +33,7 @@ export default class ProjectPage extends Component {
             })}
         return (
             <div>
-                <h1>My Projects</h1>
+                <h2>My Projects</h2>
                 {content}
             </div>
         )

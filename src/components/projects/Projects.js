@@ -32,7 +32,7 @@ export default class Project extends Component{
                 <div id="meetingsManagementBtns">
                     <Link to={'/meeting/'+ this.props.teamId + '/create' } className="btn btn-success">Create Meeting</Link>
                     <Link to={'/meeting/'+ this.props.teamId + '/edit' } className="btn btn-success">Edit Meetings</Link>
-                    <span className="spanner">Files</span>
+                    <h4 className="description">Files</h4>
                     <Link to={"/files/" + this.props.teamId} className="btn btn-primary">Show</Link>
                 </div>
                 </div>
