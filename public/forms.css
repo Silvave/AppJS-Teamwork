@@ -2,7 +2,6 @@ div#loginForm, div#registerForm, div#createForm, div#createTeamForm {
     position: absolute;
     top: 50%;
     left: 35%;
-    overflow: auto;
 }
 h3 {
     text-align: center;
@@ -10,7 +9,7 @@ h3 {
 }
 form {
     background: url("../public/form_img.jpg") no-repeat center;
-    width: 315px;
+    width: 330px;
     padding: 5px;
     border: 2px solid gray;
     border-radius: 5px;
